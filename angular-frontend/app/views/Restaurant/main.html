@@ -1,11 +1,14 @@
 <div>
+  <h2>{{restaurant.restaurant_name}}</h2>
+  <button ng-click='addTime()'>+5</button>
+  <button ng-click='subtractTime()'>-5</button>
   <table>
-    <tr ng-repeat='customer in customers'>
-      <td>{{customer.first_name}}</td>
-      <td>{{customer.party_size}}</td>
-      <td>{{customer.minutes}}</td>
-      <td><button><img src='#'></button></td> <!-- Check-Off -->
-      <td><button><img src='#'></button></td><!-- Cancel -->
+    <tr ng-repeat='reservation in reservations'>
+      <td>{{reservation.patron.first_name}}</td>
+      <td>{{reservation.party_size}}</td>
+      <td>{{reservation.minutes}}</td>
+      <td><button ng-click='seated(reservation)'><i class="fa fa-times"></i></button></td>
+      <td><button ng-click='canceled(reservation)'><i class="fa fa-check"></i></button></td>
     </tr>
   </table>
 </div>
