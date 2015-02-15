@@ -73,12 +73,14 @@ restaurantApp.controller('RestaurantSignInController', function($scope, $http, $
 });
 
 restaurantApp.controller('RestaurantMainController', function($scope, $http) {
+  $scope.restaurant;
   $scope.reservations = [];
   $http.get('http://localhost:3000/restaurants/1/reservations')
     .success(function(data) {
-      console.log(data.restaurant_name);
-      for (var x in data) {
-        $scope.reservations.push(data[x]);
+      console.log(data)
+      $scope.restaurant = data.restaurant;
+      for (var x in data.reservations) {
+        $scope.reservations.push(data.reservations[x]);
       }
     })
 
@@ -89,7 +91,7 @@ restaurantApp.controller('RestaurantMainController', function($scope, $http) {
   $scope.addReservation = function(cellPhone, numberOfPeople, minutes) {
     var newReservation = {cell_phone: cellPhone, party_size: numberOfPeople, minutes: minutes};
 
-    $http.post('http://localhost:3000/restaurants/1/reservations', newReservation)
+    $http.post('http://localhost:3000/restaurants/' + $scope.restaurant.id + '/reservations', newReservation)
       .success(function(data) {
         $scope.reservations.push(data);
         $scope.addForm = false;
@@ -103,7 +105,7 @@ restaurantApp.controller('RestaurantMainController', function($scope, $http) {
   $scope.addTime = function() {
     $http({
       method: 'POST',
-      url: 'http://localhost:3000/restaurants/1/reservations/add_time',
+      url: 'http://localhost:3000/restaurants/' + $scope.restaurant.id + '/reservations/add_time',
       data: {party_size: $scope.party_size}
     })
       .success(function()  {
@@ -125,7 +127,7 @@ restaurantApp.controller('RestaurantMainController', function($scope, $http) {
   $scope.subtractTime = function() {
     $http({
       method: 'POST',
-      url: 'http://localhost:3000/restaurants/1/reservations/subtract_time',
+      url: 'http://localhost:3000/restaurants/' + $scope.restaurant.id + '/reservations/subtract_time',
       data: {party_size: $scope.party_size}
     })
       .success(function()  {
@@ -145,18 +147,20 @@ restaurantApp.controller('RestaurantMainController', function($scope, $http) {
   }
 
   $scope.seated = function(reservation) {
-    console.log(reservation);
-    $http.delete('http://localhost:3000/restaurants/1/reservations/seated', reservation)
+    $http.delete('http://localhost:3000/restaurants/' + reservation.restaurant_id + '/reservations/' + reservation.id)
       .success(function()  {
-        $location.path('/restaurant_main')
+        console.log(reservation)
+        var index = $scope.reservations.indexOf(reservation)
+        $scope.reservations.splice(index, 1)
       })
   }
 
   $scope.canceled = function(reservation) {
-    console.log(reservation);
-    $http.delete('http://localhost:3000/restaurants/1/reservations/cancel', reservation)
+    $http.delete('http://localhost:3000/restaurants/' + reservation.restaurant_id + '/reservations/' + reservation.id)
       .success(function()  {
-        $location.path('/restaurant_main')
+        console.log(reservation);
+        var index = $scope.reservations.indexOf(reservation)
+        $scope.reservations.splice(index, 1)
       })
   }
 
