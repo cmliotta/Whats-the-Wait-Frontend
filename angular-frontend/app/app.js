@@ -44,7 +44,7 @@ restaurantApp.config(function($routeProvider) {
     templateUrl: 'views/patron/main.html',
     controller: 'PatronMainController'
   })
-  .otherwise({redirectTo: '/home'});
+  // .otherwise({redirectTo: '/home'});
 });
 
 restaurantApp.controller('HomeController', function() {});
@@ -71,32 +71,76 @@ restaurantApp.controller('RestaurantSignInController', function($scope, $http, $
       })
   };
 });
+
 restaurantApp.controller('RestaurantMainController', function($scope, $http) {
   $scope.reservations = [];
   $http.get('http://localhost:3000/restaurants/1/reservations')
     .success(function(data) {
+      console.log(data.restaurant_name);
       for (var x in data) {
         $scope.reservations.push(data[x]);
       }
     })
 
+  $scope.showAddForm = function() {
+    $scope.addForm = true;
+  };
+
+  $scope.addReservation = function(cellPhone, numberOfPeople, minutes) {
+    var newReservation = {cell_phone: cellPhone, party_size: numberOfPeople, minutes: minutes};
+
+    $http.post('http://localhost:3000/restaurants/1/reservations', newReservation)
+      .success(function(data) {
+        $scope.reservations.push(data);
+        $scope.addForm = false;
+      })
+  }
+
+  $scope.cancelReservation = function(){
+    $scope.addForm = false;
+  }
+
   $scope.addTime = function() {
     $http({
-      method: 'PATCH',
-      url: 'http://localhost:3000/restaurants/1/reservations/add_time'
+      method: 'POST',
+      url: 'http://localhost:3000/restaurants/1/reservations/add_time',
+      data: {party_size: $scope.party_size}
     })
       .success(function()  {
-        $location.path('/restaurant_main')
+        for(var r in $scope.reservations) {
+          if($scope.party_size == 2) {
+            if($scope.reservations[r].party_size <= 2) {
+              $scope.reservations[r].minutes += 5;
+            }
+          }
+          else if($scope.party_size == 4) {
+            if($scope.reservations[r].party_size >= 3) {
+              $scope.reservations[r].minutes += 5;
+            }
+          }
+        }
       })
   }
 
   $scope.subtractTime = function() {
     $http({
-      method: 'PATCH',
-      url: 'http://localhost:3000/restaurants/1/reservations/subtract_time'
+      method: 'POST',
+      url: 'http://localhost:3000/restaurants/1/reservations/subtract_time',
+      data: {party_size: $scope.party_size}
     })
       .success(function()  {
-        $location.path('/restaurant_main')
+        for(var r in $scope.reservations) {
+          if($scope.party_size == 2) {
+            if($scope.reservations[r].party_size <= 2) {
+              $scope.reservations[r].minutes -= 5;
+            }
+          }
+          else if($scope.party_size == 4) {
+            if($scope.reservations[r].party_size >= 3) {
+              $scope.reservations[r].minutes -= 5;
+            }
+          }
+        }
       })
   }
 
