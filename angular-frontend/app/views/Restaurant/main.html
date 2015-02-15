@@ -1,10 +1,43 @@
 <div>
   <h2>{{restaurant.restaurant_name}}</h2>
-  <button ng-click='addTime()'>+5</button>
-  <button ng-click='subtractTime()'>-5</button>
+  <button ng-click='showAddForm()'>Add Reservation</button>
+  <div ng-show='addForm'>
+    <label>Cell phone</label>
+    <input type='text' ng-model='cellPhone' />
+    <label>Party Size</label>
+    <select type='number' ng-model='numberOfPeople'>
+      <option value=1>1</option>
+      <option value=2>2</option>
+      <option value=3>3</option>
+      <option value=4>4</option>
+    </select>
+    <label>Wait Time</label>
+    <select type='number' ng-model='minutes'>
+      <option value=10>10</option>
+      <option value=20>20</option>
+      <option value=30>30</option>
+      <option value=40>40</option>
+      <option value=50>50</option>
+      <option value=60>60</option>
+    </select>
+    <button type='submit' ng-click='addReservation(cellPhone, numberOfPeople, minutes)'>Add</button>
+    <button type='submit' ng-click='cancelReservation()'>Cancel</button>
+  </div>
+  <div>
+    <p>Add Time</p>
+    <label>Party Size</label>
+    <select type='text' ng-model='party_size'>
+      <option value=2>1-2</option>
+      <option value=4>3-4</option>
+    </select>
+    <button ng-click='addTime()'>+5</button>
+    <button ng-click='subtractTime()'>-5</button>
+  </div>
+  <h3>Waiting List</h3>
   <table>
     <tr ng-repeat='reservation in reservations'>
-      <td>{{reservation.patron.first_name}}</td>
+      <td>{{reservation.first_name}}</td>
+      <td>{{reservation.last_initial}}</td>
       <td>{{reservation.party_size}}</td>
       <td>{{reservation.minutes}}</td>
       <td><button ng-click='seated(reservation)'><i class="fa fa-times"></i></button></td>
