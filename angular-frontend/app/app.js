@@ -186,12 +186,80 @@ restaurantApp.controller('PatronSignInController', function($scope, $http, $loca
       })
   };
 });
+
 restaurantApp.controller('PatronMainController', function($scope, $http) {
-  $scope.waitInfo = [];
-  $http.get('https://')
+  // $scope.waitInfo;
+  $http.get('http://localhost:3000/patrons/1')
     .success(function(data) {
-      waitInfo.push(data[x]);
+      $scope.waitInfo = data.waitInfo
+      $scope.restaurant_name = data.restaurant_name
+      $scope.parties_ahead = data.parties_ahead
+      console.log($scope.parties_ahead)
+    })
+    .error(function(data){
+      console.log(data)
     })
 });
 
+
+
+
+// CLOCK COUNTDOWN
+
+// function Clock(selector) {
+//   this.view = new Clock.View(selector);
+//   this.model = new Clock.Model;
+// }
+
+// Clock.prototype.countDown = function (min) {
+//     this.model.setTime(min);
+//     this.view.render(this.model);
+//     setTimeout(this.tickDown.bind(this), 1000);
+// }
+
+// Clock.prototype.tickDown = function () {
+//     var shouldContinue = this.model.tickDown();
+//     this.view.render(this.model);
+//     if (shouldContinue) {
+//         setTimeout(this.tickDown.bind(this), 1000);
+//     }
+// }
+
+// Clock.Model = function() {
+//     this.min = 0;
+//     this.sec = 0;
+// }
+
+// Clock.Model.prototype.setTime = function(min) {
+//     this.min = min;
+// }
+
+// Clock.Model.prototype.tickDown = function () {
+//     if (this.sec <= 0) {
+//         if (this.min <= 0) {
+//             return false;
+//         }
+//         this.sec = 59;
+//         this.min = this.min - 1;
+//     } else {
+//         this.sec = this.sec - 1;
+//     }
+//     return true;
+// }
+
+// Clock.View = function (selector) {
+//     this.el = document.querySelector(selector);
+// }
+
+// Clock.View.prototype.render = function(obj) {
+//     var sec = obj.sec;
+//     if (sec < 10) {
+//         sec = '0' + sec;
+//     }
+//     this.el.innerHTML = obj.min + ':' + sec;
+// }
+
+// var clock = new Clock('#test');
+
+// clock.countDown(1);
 
