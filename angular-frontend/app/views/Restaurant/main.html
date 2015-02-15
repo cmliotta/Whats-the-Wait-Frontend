@@ -27,8 +27,8 @@
     <p>Add Time</p>
     <label>Party Size</label>
     <select type='text' ng-model='party_size'>
-      <option value=2>1-2</option>
-      <option value=4>3-4</option>
+      <option value="2">1-2</option>
+      <option value="4">3-4</option>
     </select>
     <button ng-click='addTime()'>+5</button>
     <button ng-click='subtractTime()'>-5</button>
@@ -39,7 +39,7 @@
       <td>{{reservation.first_name}}</td>
       <td>{{reservation.last_initial}}</td>
       <td>{{reservation.party_size}}</td>
-      <td>{{reservation.minutes}}</td>
+      <td>{{reservation.minutes - 1}}:{{reservation.seconds}}</td>
       <td><button ng-click='seated(reservation)'><i class="fa fa-check"></i></button></td>
       <td><button ng-click='canceled(reservation)'><i class="fa fa-times"></i></button></td>
     </tr>

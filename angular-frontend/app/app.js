@@ -103,6 +103,7 @@ restaurantApp.controller('RestaurantMainController', function($scope, $http) {
   }
 
   $scope.addTime = function() {
+    console.log($scope.party_size)
     $http({
       method: 'POST',
       url: 'http://localhost:3000/restaurants/' + $scope.restaurant.id + '/reservations/add_time',
@@ -133,12 +134,12 @@ restaurantApp.controller('RestaurantMainController', function($scope, $http) {
       .success(function()  {
         for(var r in $scope.reservations) {
           if($scope.party_size == 2) {
-            if($scope.reservations[r].party_size <= 2) {
+            if($scope.reservations[r].party_size <= 2 && $scope.reservations[r].minutes > 0) {
               $scope.reservations[r].minutes -= 5;
             }
           }
           else if($scope.party_size == 4) {
-            if($scope.reservations[r].party_size >= 3) {
+            if($scope.reservations[r].party_size >= 3 && $scope.reservations[r].minutes > 0) {
               $scope.reservations[r].minutes -= 5;
             }
           }
@@ -179,7 +180,6 @@ restaurantApp.controller('PatronRegistrationController', function($scope, $http,
 restaurantApp.controller('PatronSignInController', function($scope, $http, $location) {
   $scope.validateUser = function(email, password) {
     var user = {email: email, password: password};
-
     $http.post('https://', user)
       .success(function() {
         $location.path('/restaurant/main');
@@ -187,11 +187,13 @@ restaurantApp.controller('PatronSignInController', function($scope, $http, $loca
   };
 });
 
-restaurantApp.controller('PatronMainController', function($scope, $http) {
-  // $scope.waitInfo;
-  $http.get('http://localhost:3000/patrons/1')
+
+restaurantApp.controller('PatronMainController', function($scope, $interval, $http, $timeout) {
+  // $interval(function(){
+    $http.get('http://localhost:3000/patrons/1')
     .success(function(data) {
       $scope.waitInfo = data.waitInfo
+      $scope.waitInfo.seconds = 59
       $scope.restaurant_name = data.restaurant_name
       $scope.parties_ahead = data.parties_ahead
       console.log($scope.parties_ahead)
@@ -199,12 +201,36 @@ restaurantApp.controller('PatronMainController', function($scope, $http) {
     .error(function(data){
       console.log(data)
     })
-});
+  // }, 1000)
+    $scope.onTimeout = function(){
+      if ($scope.waitInfo.seconds > 0) {
+        $scope.waitInfo.seconds--;
+        if ($scope.waitInfo.seconds < 10) {
+          $scope.waitInfo.seconds = '0' + $scope.waitInfo.seconds;
+        }
+        // mytimeout = $timeout($scope.onTimeout,1000);
+      } else if($scope.waitInfo.seconds == 0) {
+        $scope.waitInfo.seconds = 59
+        $scope.waitInfo.minutes--
+      }
+      mytimeout = $timeout($scope.onTimeout,1000);
+    }
+    var mytimeout = $timeout($scope.onTimeout,1000);
+})
 
 
 
+    // if (this.sec <= 0) {
+    //     if (this.min <= 0) {
+    //         return false;
+    //     }
+    //     this.sec = 59;
+    //     this.min = this.min - 1;
+    // } else {
+    //     this.sec = this.sec - 1;
+    // }
+    // return true;
 
-// CLOCK COUNTDOWN
 
 // function Clock(selector) {
 //   this.view = new Clock.View(selector);
@@ -235,16 +261,6 @@ restaurantApp.controller('PatronMainController', function($scope, $http) {
 // }
 
 // Clock.Model.prototype.tickDown = function () {
-//     if (this.sec <= 0) {
-//         if (this.min <= 0) {
-//             return false;
-//         }
-//         this.sec = 59;
-//         this.min = this.min - 1;
-//     } else {
-//         this.sec = this.sec - 1;
-//     }
-//     return true;
 // }
 
 // Clock.View = function (selector) {
