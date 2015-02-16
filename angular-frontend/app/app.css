@@ -1,6 +1,57 @@
 /* app css stylesheet */
 
-.menu {
+body {
+  background: black;
+  color: #33ADAD;
+}
+
+.logo {
+  height: 50px;
+  width: 300px;
+  margin-right: 50%;
+  margin-left: 50%;
+  border: 1px solid #A1A9A9;
+  text-align: center;
+}
+
+hr {
+  border: 1px solid #A1A9A9;
+}
+
+.wait-container {
+  padding-top: 25px;
+  padding-bottom: 25px;
+}
+
+#timer {
+  font-size: 70px;
+  text-align: center;
+}
+
+h1 {
+  text-align: center;
+}
+
+h2 {
+  text-align: center;
+}
+
+.parties-ahead {
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.remove {
+  text-align: left;
+  margin-top: 10px;
+}
+
+button {
+  background-color: lime;
+  color: black;
+}
+
+./*menu {
   list-style: none;
   border-bottom: 0.1em solid black;
   margin-bottom: 2em;
@@ -28,3 +79,4 @@
   content: "";
   padding: 0;
 }
+*/
