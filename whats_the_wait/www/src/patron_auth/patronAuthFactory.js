@@ -5,5 +5,4 @@ angular.module('restaurantApp')
   return function test (){
     console.log("patronAuthFactory")
   }
-
 }])

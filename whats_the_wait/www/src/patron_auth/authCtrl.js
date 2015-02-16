@@ -4,7 +4,8 @@ angular.module('restaurantApp')
   var vm = this;
 
   console.log("patronAuthCtrl")
-    $scope.attemptLogin = function() {
+
+    $scope.patronLogin = function() {
       $location.path("/patronMain")
     }
 

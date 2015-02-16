@@ -31,5 +31,4 @@ $http.get('http://localhost:3000/patrons/1')
       mytimeout = $timeout($scope.onTimeout,1000);
     }
     var mytimeout = $timeout($scope.onTimeout,1000);
-
 }])
