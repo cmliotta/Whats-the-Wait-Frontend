@@ -1,8 +1,4 @@
-<head>
-  <link rel="stylesheet" href="patron.css">
-</head>
-
-<body>
+<div class="auth" ng-controller="patronMainController">
   <div class="logo">LOGO</div>
 
   <div id="container">
@@ -12,7 +8,7 @@
 
     <div class="wait-container">
 
-      <h2> Your wait time for {{restaurant.restaurant_name}}: </h2>
+      <h2> Your wait time for {{waitInfo.restaurant_name}}: </h2>
 
       <div id="timer">{{waitInfo.minutes}}:{{waitInfo.seconds}}</div>
 
@@ -24,13 +20,8 @@
 
     <hr>
     <!-- <h1 id="range">- {{waitInfo.minutes + 10}}:{{waitInfo.seconds}}  Minutes</h1> -->
-    <div class="contact">Contact {{restaurant.restaurant_name}}: {{restaurant.phone}}</div>
+    <div class="contact">Contact {{waitInfo.restaurant_name}}: {{waitInfo.restaurant_phone}}</div>
 
   </div>
-
-</body>
-
-
-
-
+</div>
 

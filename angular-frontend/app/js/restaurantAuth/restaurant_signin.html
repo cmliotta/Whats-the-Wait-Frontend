@@ -1,0 +1,49 @@
+<div class="auth" ng-controller="restaurantAuthController">
+<!--
+  <div id="login" ng-show="login">
+    <h2>Login</h2>
+    <form ng-submit="authenticate()">
+      <input ng-model="user.username" type="text" name="username" placeholder="Username" /><br>
+      <input ng-model="user.password" type="password" name="password" placeholder="Password" /><br>
+      <input type="submit" value="Login" />
+    </form>
+  </div> -->
+  <h2>Signin</h2>
+  <form ng-submit='loginRestaurant()'>
+    <label>Email</label>
+    <input type='text' ng-model='restaurant.email' /><br/>
+    <label>Password</label>
+    <input type='password' ng-model='restaurant.password' /><br/>
+    <button type='submit'>Login</button>
+  </form>
+<!--   <a href='./registration.html'>Registration</a> -->
+</div>
+
+<!-- <div ng-controller='restaurantSignInController'>
+  <h2>Signin</h2>
+  <form ng-submit='loginRestaurant()'>
+    <label>Email</label>
+    <input type='text' ng-model='restaurant.email'><br/>
+    <label>Password</label>
+    <input type='password' ng-model='restaurant.password'><br/>
+    <button type='submit'>Login</button>
+  </form>
+  <a href='./registration.html'>Registration</a>
+</div> -->
+
+
+<!--   <div id="register" ng-show="signup">
+    <h2>Register</h2>
+    <form ng-submit="register()">
+      <input ng-model="new_user.name" type="text" name="name" placeholder="Name" /><br>
+      <input ng-model="new_user.username" type="text" name="username" placeholder="Username" /><br>
+      <input ng-model="new_user.email" type="text" name="email" placeholder="Email" /><br>
+      <input ng-model="new_user.password" type="password" name="password" placeholder="Password" /><br>
+
+      <input type="submit" value="Register" />
+    </form>
+  </div> -->
+
+  <!-- <input type="button" value="logout" ng-click="logout()"> -->
+
+</div>
