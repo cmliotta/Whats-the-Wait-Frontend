@@ -9,11 +9,11 @@ angular.module('restaurantApp')
     controller    : 'patronAuthCtrl'
   })
 
-  // .state('patronSignup', {
-  //   url           : "/patronSignup",
-  //   templateUrl   : "patron_auth/signupPage.html",
-  //   controller    : 'authCtrl'
-  // })
+  .state('patronSignup', {
+    url           : "/patronSignup",
+    templateUrl   : "src/patron_auth/signupPage.html",
+    controller    : 'patronAuthCtrl'
+  })
 
   $urlRouterProvider.otherwise('/')
 
