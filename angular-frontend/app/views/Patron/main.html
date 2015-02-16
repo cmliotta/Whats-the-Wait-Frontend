@@ -1,16 +1,16 @@
-<h1>Hello, {{waitInfo.first_name}}! </h1>
+<div id="container">
+  <h1>Hello, {{waitInfo.first_name}}! </h1>
 
-<hr>
+  <hr>
+    <div>Parties Ahead: <strong> {{parties_ahead}} </strong> </div>
+  <hr>
 
-<div>Parties Ahead:</div>
-<strong> {{parties_ahead}} </strong> </div>
-
-<hr>
-
-<h3> Your wait time for {{restaurant_name}}: </h3>
-<h1>{{waitInfo.minutes}} - {{waitInfo.minutes + 10}}  Minutes</h1>
-
+  <h3> Your wait time for {{restaurant.restaurant_name}}: </h3>
+  <h1 id="timer">{{waitInfo.minutes}}:{{waitInfo.seconds}}</h1>
+  <!-- <h1 id="range">- {{waitInfo.minutes + 10}}:{{waitInfo.seconds}}  Minutes</h1> -->
+  <li>{{restaurant.phone}}</li>
 <button>Remove Me From Wait List</button>
+</div>
 
 
 
