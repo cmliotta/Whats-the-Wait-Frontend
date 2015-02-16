@@ -12,7 +12,6 @@ app.run(function($ionicPlatform) {
   });
 })
 
-
 app.config(function($urlRouterProvider, $httpProvider, $stateProvider) {
 
   $stateProvider
@@ -22,13 +21,7 @@ app.config(function($urlRouterProvider, $httpProvider, $stateProvider) {
       templateUrl: "landingPage.html"
     })
 
-  //   .state('app.patron_login', {
-  //     url: "/patron_login",
-  //     templateUrl: "..src/patron_auth/landingPage.html"
-  //   })
-
-  $urlRouterProvider.otherwise('/')
-
+    $urlRouterProvider.otherwise('/')
   })
 
 

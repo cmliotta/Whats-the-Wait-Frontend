@@ -253,4 +253,3 @@ restaurantApp.controller('PatronMainController', function($scope, $interval, $ht
     }
     var mytimeout = $timeout($scope.onTimeout,1000);
 })
-
