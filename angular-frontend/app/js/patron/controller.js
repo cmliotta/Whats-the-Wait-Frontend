@@ -1,12 +1,8 @@
-angular.module('restaurantApp')
+restaurantApp.controller('patronMainController', function($scope, $interval, $http, $timeout, $routeParams) {
 
-.controller('patronMainCtrl', ['patronFactory', '$scope', '$http', '$timeout', function(patronAuthFactory, $scope, $http, $timeout) {
-
-console.log("patronMainCtrl")
- var vm = this
-
-$http.get('http://localhost:3000/patrons/1')
+    $http.get('http://localhost:3000/patrons/' + $routeParams.id)
     .success(function(data) {
+      console.log(data);
       $scope.waitInfo = data.waitInfo
       $scope.waitInfo.seconds = 00
       $scope.restaurant = data.restaurant
@@ -31,4 +27,4 @@ $http.get('http://localhost:3000/patrons/1')
       mytimeout = $timeout($scope.onTimeout,1000);
     }
     var mytimeout = $timeout($scope.onTimeout,1000);
-}])
+})
