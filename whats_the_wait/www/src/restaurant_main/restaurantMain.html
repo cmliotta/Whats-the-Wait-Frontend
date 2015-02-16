@@ -1,0 +1,62 @@
+<ion-view>
+  <ion-content>
+    <head>
+      <!-- <link rel="stylesheet" href="patron.css"> -->
+    </head>
+    <body>
+      <div>
+        <h2>{{restaurant.restaurant_name}}</h2>
+        <button ng-click='showAddForm()'>Add Reservation</button>
+        <h1 id="error"></h1>
+        <div ng-show='addForm'>
+          <label>Cell phone</label>
+          <input type='text' ng-model='cellPhone' />
+          <label>Party Size</label>
+          <select type='number' ng-model='numberOfPeople'>
+            <option value=1>1</option>
+            <option value=2>2</option>
+            <option value=3>3</option>
+            <option value=4>4</option>
+          </select>
+          <label>Wait Time</label>
+          <select type='number' ng-model='minutes'>
+            <option value=10>10</option>
+            <option value=15>15</option>
+            <option value=20>20</option>
+            <option value=25>25</option>
+            <option value=30>30</option>
+            <option value=35>35</option>
+            <option value=40>40</option>
+            <option value=45>45</option>
+            <option value=50>50</option>
+            <option value=55>55</option>
+            <option value=60>60</option>
+          </select>
+          <button type='submit' ng-click='addReservation(cellPhone, numberOfPeople, minutes)'>Add</button>
+          <button type='submit' ng-click='cancelReservation()'>Cancel</button>
+        </div>
+        <div>
+          <p>Add Time</p>
+          <label>Party Size</label>
+          <select type='text' ng-model='party_size'>
+            <option value="2">1-2</option>
+            <option value="4">3-4</option>
+          </select>
+          <button ng-click='addTime()'>+5</button>
+          <button ng-click='subtractTime()'>-5</button>
+        </div>
+        <h3>Waiting List</h3>
+        <table>
+          <tr ng-repeat='reservation in reservations'>
+            <td>{{reservation.first_name}}</td>
+            <td>{{reservation.last_initial}}</td>
+            <td>{{reservation.party_size}}</td>
+            <td>{{reservation.minutes}}:00</td>
+            <td><button ng-click='seated(reservation)'><i class="fa fa-check"></i></button></td>
+            <td><button ng-click='canceled(reservation)'><i class="fa fa-times"></i></button></td>
+          </tr>
+        </table>
+      </div>
+    </body>
+  </ion-content>
+</ion-view>
