@@ -1,0 +1,27 @@
+<div class="auth" ng-controller="patronMainController">
+  <div class="logo">LOGO</div>
+
+  <div id="container">
+    <h1>Hello, {{waitInfo.first_name}}! </h1>
+
+    <hr>
+
+    <div class="wait-container">
+
+      <h2> Your wait time for {{waitInfo.restaurant_name}}: </h2>
+
+      <div id="timer">{{waitInfo.minutes}}:{{waitInfo.seconds}}</div>
+
+      <div class="parties-ahead">Parties Ahead: {{parties_ahead}} </div>
+
+      <button class="remove">Remove Me From Wait List</button>
+
+    </div>
+
+    <hr>
+    <!-- <h1 id="range">- {{waitInfo.minutes + 10}}:{{waitInfo.seconds}}  Minutes</h1> -->
+    <div class="contact">Contact {{waitInfo.restaurant_name}}: {{waitInfo.restaurant_phone}}</div>
+
+  </div>
+</div>
+

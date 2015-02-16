@@ -1,0 +1,32 @@
+<div class="auth" ng-controller="patronAuthController">
+  <h2>Signin</h2>
+  <div>
+    <form ng-submit='loginPatron()'>
+      <label>Cell phone</label>
+      <input type='text' ng-model='patron.cell_phone'><br/>
+      <label>Password</label>
+      <input type='password' ng-model='patron.password'><br/>
+      <button type='submit'>Login</button>
+    </form>
+    <a href='./registration.html'>Registration</a>
+  </div>
+</div>
+
+<!--
+  1. restaurant_Auth
+    - signin view
+    - signup view
+    - controller
+  2. patron_Auth
+    - signin view
+    - signup view
+    - contoller
+    -
+  3. restaurant_main
+  4. patron_main
+    -
+  5. app.js
+    - routes
+    - auth interceptor
+    - factory to store token
+-->
