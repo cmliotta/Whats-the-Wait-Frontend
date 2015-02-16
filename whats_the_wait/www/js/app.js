@@ -1,14 +1,4 @@
-var app = angular.module('restaurantApp', [  'ionic',
-                                             'patronRoutes',
-
-
-
-
-
-
-
-
-                                                             ])
+var app = angular.module('restaurantApp', ['ionic', 'ui.router'])
 
 app.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -27,14 +17,17 @@ app.config(function($urlRouterProvider, $httpProvider, $stateProvider) {
 
   $stateProvider
 
-    .state('home', {
+    .state('/', {
       url: "/",
-      templateUrl: "src/patron_auth/landingPage.html"
+      templateUrl: "landingPage.html"
     })
 
-  $urlRouterProvider
+  //   .state('app.patron_login', {
+  //     url: "/patron_login",
+  //     templateUrl: "..src/patron_auth/landingPage.html"
+  //   })
 
-    .otherwise('/')
+  $urlRouterProvider.otherwise('/')
 
   })
 

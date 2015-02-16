@@ -1,23 +1,20 @@
-angular.module('loginRoutes', ['ionic'])
+angular.module('restaurantApp')
 
 .config(function($stateProvider, $urlRouterProvider) {
   $stateProvider
 
-  .state('landing', {
-    url           : "/ ",
-    templateUrl   : "patron_auth/landingPage.html",
-    controller    : 'authCtrl'
-  })
-
   .state('patronLogin', {
-    url           : "/patron_login",
-    templateUrl   : "patron_auth/loginPage.html",
-    controller    : 'authCtrl'
+    url           : "/patronLogin",
+    templateUrl   : "src/patron_auth/loginPage.html",
+    controller    : 'patronAuthCtrl'
   })
 
-  .state('patronSignup', {
-    url           : "/patron_signup",
-    templateUrl   : "patron_auth/signupPage.html",
-    controller    : 'authCtrl'
-  })
+  // .state('patronSignup', {
+  //   url           : "/patronSignup",
+  //   templateUrl   : "patron_auth/signupPage.html",
+  //   controller    : 'authCtrl'
+  // })
+
+  $urlRouterProvider.otherwise('/')
+
 });
