@@ -1,5 +1,18 @@
 <ion-view>
   <ion-content>
-    <h1>patron sign up here!</h1>
+    <h2>Registration Form</h2>
+<div>
+  <label>First Name</label>
+  <input type='text' ng-model='firstName'>
+  <label>Last Name</label>
+  <input type='text' ng-model='lastName'>
+  <label>Email</label>
+  <input type='text' ng-model='email'>
+  <label>Cell Phone</label>
+  <input type='text' ng-model='cellPhone'>
+  <label>Password</label>
+  <input type='password' ng-model='password'>
+  <button type='submit' ng-click='addUser(firstName, lastName, email, phoneNumber, password)'>Register</button>
+</div>
   </ion-content>
 </ion-view>

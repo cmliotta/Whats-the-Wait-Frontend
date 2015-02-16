@@ -1,5 +1,22 @@
 <ion-view>
   <ion-content>
-    <h1>HI</h1>
+    <head>
+      <!-- <link rel="stylesheet" href="patron.css"> -->
+    </head>
+    <body>
+      <div id="container">
+        <h1>Hello, {{waitInfo.first_name}}! </h1>
+        <hr>
+        <div class="wait-container">
+          <h2> Your wait time for {{restaurant.restaurant_name}}: </h2>
+          <div id="timer">{{waitInfo.minutes}}:{{waitInfo.seconds}}</div>
+          <div class="parties-ahead">Parties Ahead: {{parties_ahead}} </div>
+          <button class="remove">Remove Me From Wait List</button>
+        </div>
+        <hr>
+        <!-- <h1 id="range">- {{waitInfo.minutes + 10}}:{{waitInfo.seconds}}  Minutes</h1> -->
+        <div class="contact">Contact {{restaurant.restaurant_name}}: {{restaurant.phone}}</div>
+      </div>
+    </body>
   </ion-content>
 </ion-view>

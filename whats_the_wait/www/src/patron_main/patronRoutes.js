@@ -6,7 +6,7 @@ angular.module('restaurantApp')
   .state('patronMain', {
     url           : "/patronMain",
     templateUrl   : "src/patron_main/patronMain.html",
-    controller    : 'patronAuthCtrl'
+    controller    : 'patronMainCtrl'
   })
 
   $urlRouterProvider.otherwise('/')
