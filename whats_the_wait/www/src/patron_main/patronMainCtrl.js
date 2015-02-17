@@ -8,31 +8,20 @@ console.log("patronMainCtrl")
 $http.get('http://localhost:3000/patrons/2')
     .success(function(data) {
       console.log(data)
+      $location.path("/patronMain")
       $scope.waitInfo = data.waitInfo
       $scope.waitInfo.seconds = 0
       $scope.restaurant = data.restaurant
       $scope.parties_ahead = data.parties_ahead
     })
     .error(function(data){
+      $location.path("/noWaitList")
       console.log(data)
     })
 
-    $scope.onTimeout = function(){
-      if ($scope.waitInfo.seconds > 0) {
-        $scope.waitInfo.seconds--;
-        if ($scope.waitInfo.seconds < 10) {
-          $scope.waitInfo.seconds = '0' + $scope.waitInfo.seconds;
-        }
-      } else if($scope.waitInfo.seconds == 0 && $scope.waitInfo.minutes > 0) {
-        $scope.waitInfo.seconds = 59
-        $scope.waitInfo.minutes--
-      } else {
-        console.log("timed out to zero")
-        $location.path("/tableReady")
-      }
-      mytimeout = $timeout($scope.onTimeout,1000);
+    $scope.noWaitList = function() {
+      $location.path("/noWaitList")
     }
-    var mytimeout = $timeout($scope.onTimeout,1000);
 
     setInterval(function() {
       $http.get('http://localhost:3000/restaurants/' + $scope.waitInfo.restaurant_id + '/reservations/' + $scope.waitInfo.id + '/send_alert')
@@ -40,13 +29,13 @@ $http.get('http://localhost:3000/patrons/2')
           if (response.message == "ready"){
             $location.path("/tableReady")
           }
-          // console.log("restaurant sent " + response.message)
         })
         .error(function(response)  {
           console.log(response)
         })
     }, 60000)
 
+// updates every minute when restaurant adds/subtracts minutes from reservations
     setInterval(function() {
       $http.get('http://localhost:3000/patrons/2')
       .success(function(data){
@@ -54,6 +43,9 @@ $http.get('http://localhost:3000/patrons/2')
       $scope.waitInfo.seconds = 0
       $scope.restaurant = data.restaurant
       $scope.parties_ahead = data.parties_ahead
+      $location.path("/patronMain")
+      }).error(function(data){
+        $location.path("/noWaitList")
       })
     }, 60000)
 
@@ -66,4 +58,20 @@ $http.get('http://localhost:3000/patrons/2')
         console.log(response)
       })
   }
+
+    $scope.onTimeout = function(){
+      if ($scope.waitInfo.seconds > 0) {
+        $scope.waitInfo.seconds--;
+        if ($scope.waitInfo.seconds < 10) {
+          $scope.waitInfo.seconds = '0' + $scope.waitInfo.seconds;
+        }
+      } else if($scope.waitInfo.seconds == 0 && $scope.waitInfo.minutes > 0) {
+        $scope.waitInfo.seconds = 59
+        $scope.waitInfo.minutes--
+      } else {
+        $location.path("/tableReady")
+      }
+      mytimeout = $timeout($scope.onTimeout,1000);
+    }
+    var mytimeout = $timeout($scope.onTimeout,1000);
 }])
