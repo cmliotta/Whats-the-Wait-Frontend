@@ -6,7 +6,7 @@ console.log("patronMainCtrl")
  var vm = this
 
 
-$http.get('http://localhost:3000/patrons/1')
+$http.get('http://localhost:3000/patrons/2')
     .success(function(data) {
       console.log(data)
       $scope.waitInfo = data.waitInfo
@@ -44,9 +44,17 @@ $http.get('http://localhost:3000/patrons/1')
         .error(function(response)  {
           console.log(response)
         })
-    }, 3000)
+    }, 30000)
 
-  setInterval(function() {
-    $http.get('http://localhost:3000/patrons/1')
-  }, 3000)
+    setInterval(function() {
+      $http.get('http://localhost:3000/patrons/2')
+      .success(function(data){
+      $scope.waitInfo = data.waitInfo
+      $scope.waitInfo.seconds = 0
+      $scope.restaurant = data.restaurant
+      $scope.parties_ahead = data.parties_ahead
+      })
+    }, 60000)
+
+
 }])

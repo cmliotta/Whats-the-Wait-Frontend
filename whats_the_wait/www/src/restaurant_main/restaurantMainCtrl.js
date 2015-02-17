@@ -5,7 +5,7 @@ angular.module('restaurantApp')
   console.log("restaurantMainCtrl")
 
   var vm = this
-  $scope.uiState = {party_size: 2}
+  $scope.uiState = {party_size: "2"}
 
   $http.get('http://localhost:3000/restaurants/1/reservations')
     .success(function(data) {
@@ -55,7 +55,7 @@ angular.module('restaurantApp')
     }
 
     $scope.addTime = function() {
-      console.log($scope.uiState.party_size)
+      console.log(typeof($scope.uiState.party_size))
       $http({
         method: 'POST',
         url: 'http://localhost:3000/restaurants/' + $scope.restaurant.id + '/reservations/add_time',
