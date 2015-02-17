@@ -4,25 +4,29 @@
       <!-- <link rel="stylesheet" href="patron.css"> -->
     </head>
     <body>
-      <div id="container">
-        <h1 class="greeting">Hello, {{waitInfo.first_name}}! </h1>
+      <div class="card patron-main">
+        <h2>Hello, {{waitInfo.first_name}}! </h2>
         <hr>
 
+        <h1>wait time:</h1>
 
-          <h2> Wait time for {{restaurant.restaurant_name}} is approximately</h2>
+        <div id="timer"><h1>{{waitInfo.minutes}}:{{waitInfo.seconds}}</h1>
+        </div>
 
-          <div id="timer"><h1>{{waitInfo.minutes}}:{{waitInfo.seconds}}</h1>
-          </div>
+        <div class="parties-ahead"><h3>Parties Ahead:  {{parties_ahead}}</h3>
+        </div>
+        <hr>
 
-          <div class="parties-ahead"><h3>Parties Ahead:  {{parties_ahead}}</h3>
-          </div>
-          <hr>
-
-          <button class="remove">Remove Me From Wait List</button>
+        <button class="button button-small button-calm button-patron-main">
+          Remove Me From Wait List
+        </button>
 
 
         <!-- <h1 id="range">- {{waitInfo.minutes + 10}}:{{waitInfo.seconds}}  Minutes</h1> -->
-        <div class="contact"><a href="">Contact {{restaurant.restaurant_name}}: {{restaurant.phone}}</a></div>
+        <div class="contact">
+          <a href="">Contact {{restaurant.restaurant_name}}: {{restaurant.phone}}</a>
+        </div>
+
       </div>
 
     </body>
