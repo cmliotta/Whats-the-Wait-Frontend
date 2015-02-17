@@ -33,12 +33,12 @@
             <option value=60>60</option>
           </select>
           <button type='submit' ng-click='addReservation(cellPhone, numberOfPeople, minutes)'>Add</button>
-          <button type='submit' ng-click='cancelReservation()'>Cancel</button>
+          <button type='submit' ng-click='cancelAddReservation()'>Cancel</button>
         </div>
         <div>
           <p>Add Time</p>
           <label>Party Size</label>
-          <select type='text' ng-model='party_size'>
+          <select type='text' ng-model='uiState.party_size'>
             <option value="2">1-2</option>
             <option value="4">3-4</option>
           </select>
@@ -53,7 +53,7 @@
             <td>{{reservation.party_size}}</td>
             <td>{{reservation.minutes}}:00</td>
             <td><button ng-click='seated(reservation)'><i class="fa fa-check"></i></button></td>
-            <td><button ng-click='canceled(reservation)'><i class="fa fa-times"></i></button></td>
+            <td><button ng-click='remove(reservation)'><i class="fa fa-times"></i></button></td>
           </tr>
         </table>
       </div>
