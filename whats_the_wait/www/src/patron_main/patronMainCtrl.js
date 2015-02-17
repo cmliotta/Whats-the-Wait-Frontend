@@ -5,6 +5,7 @@ angular.module('restaurantApp')
 console.log("patronMainCtrl")
  var vm = this
 
+
 $http.get('http://localhost:3000/patrons/1')
     .success(function(data) {
       console.log(data)
@@ -32,4 +33,20 @@ $http.get('http://localhost:3000/patrons/1')
       mytimeout = $timeout($scope.onTimeout,1000);
     }
     var mytimeout = $timeout($scope.onTimeout,1000);
+
+    setInterval(function() {
+      $http.get('http://localhost:3000/restaurants/' + $scope.waitInfo.restaurant_id + '/reservations/' + $scope.waitInfo.id + '/send_alert')
+        .success(function(response)  {
+          // if (response.reservation.id == $scope.waitInfo.id){
+            console.log(response)
+        // }
+        })
+        .error(function(response)  {
+          console.log(response)
+        })
+    }, 3000)
+
+  setInterval(function() {
+    $http.get('http://localhost:3000/patrons/1')
+  }, 3000)
 }])

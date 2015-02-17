@@ -110,8 +110,8 @@ angular.module('restaurantApp')
 
   $scope.seated = function(reservation) {
     $http.post('http://localhost:3000/restaurants/' + reservation.restaurant_id + '/reservations/' + reservation.id + '/send_alert')
-      .success(function()  {
-        console.log(reservation)
+      .success(function(response)  {
+        console.log(response)
     })
   }
 
