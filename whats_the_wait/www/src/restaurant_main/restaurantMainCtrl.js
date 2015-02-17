@@ -5,7 +5,7 @@ angular.module('restaurantApp')
   console.log("restaurantMainCtrl")
 
   var vm = this
-  $scope.uiState = {party_size: 2}
+  $scope.uiState = {party_size: "2"}
 
   $http.get('http://localhost:3000/restaurants/1/reservations')
     .success(function(data) {
@@ -38,6 +38,7 @@ angular.module('restaurantApp')
 
   $scope.cancelAddReservation = function(){
     $scope.addForm = false;
+    angular.element(document.querySelector('#error'))[0].innerHTML = ""
   }
 
   $scope.addReservation = function(cellPhone, numberOfPeople, minutes) {
@@ -55,7 +56,7 @@ angular.module('restaurantApp')
     }
 
     $scope.addTime = function() {
-      console.log($scope.uiState.party_size)
+      console.log(typeof($scope.uiState.party_size))
       $http({
         method: 'POST',
         url: 'http://localhost:3000/restaurants/' + $scope.restaurant.id + '/reservations/add_time',
@@ -105,6 +106,7 @@ angular.module('restaurantApp')
           console.log(reservation);
           var index = $scope.reservations.indexOf(reservation)
           $scope.reservations.splice(index, 1)
+          angular.element(document.querySelector('#error'))[0].innerHTML = ""
       })
     }
 
@@ -114,5 +116,15 @@ angular.module('restaurantApp')
         console.log(response)
     })
   }
+
+  setInterval(function() {
+    $http.get('http://localhost:3000/restaurants/' + $scope.restaurant.id + '/check_cancellations')
+    .success(function(data){
+      console.log(data.message)
+      if (data.message) {
+        angular.element(document.querySelector('#error'))[0].innerHTML = data.message
+      }
+    })
+  }, 10000)
 
 }])

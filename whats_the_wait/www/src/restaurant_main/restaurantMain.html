@@ -47,7 +47,6 @@
           <button type="submit" ng-click="cancelAddReservation()">Cancel</button>
         </div>
 
-
         <h4>Add Time:</h4>
 
         <label>Party Size: </label>
@@ -69,8 +68,8 @@
             <td>{{reservation.last_initial}}</td>
             <td>{{reservation.party_size}}</td>
             <td>{{reservation.minutes}}:00</td>
-            <td><button ng-click="seated(reservation)"><i class="fa fa-check"></i></button></td>
-            <td><button ng-click="remove(reservation)"><i class="fa fa-times"></i></button></td>
+            <td><button ng-click="seated(reservation)"><i class="fa fa-check"></i>Send Alert</button></td>
+            <td><button ng-click="remove(reservation)"><i class="fa fa-times"></i>Remove</button></td>
           </tr>
         </table>
       </div>

@@ -9,5 +9,17 @@ angular.module('restaurantApp')
     controller    : 'patronMainCtrl'
   })
 
+  .state('tableReady', {
+    url           : "/tableReady",
+    templateUrl   : "src/patron_main/tableReady.html",
+    controller    : 'patronMainCtrl'
+  })
+
+  .state('noWaitList', {
+    url           : "/noWaitList",
+    templateUrl   : "src/patron_main/noWaitList.html",
+    controller    : 'patronMainCtrl'
+  })
+
   $urlRouterProvider.otherwise('/')
 });
