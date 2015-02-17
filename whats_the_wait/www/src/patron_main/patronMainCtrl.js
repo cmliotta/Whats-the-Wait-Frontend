@@ -28,6 +28,7 @@ $http.get('http://localhost:3000/patrons/2')
         $scope.waitInfo.seconds = 59
         $scope.waitInfo.minutes--
       } else {
+        console.log("timed out to zero")
         $location.path("/tableReady")
       }
       mytimeout = $timeout($scope.onTimeout,1000);
@@ -37,7 +38,10 @@ $http.get('http://localhost:3000/patrons/2')
     setInterval(function() {
       $http.get('http://localhost:3000/restaurants/' + $scope.waitInfo.restaurant_id + '/reservations/' + $scope.waitInfo.id + '/send_alert')
         .success(function(response)  {
-          $location.path("/tableReady")
+          if (response.message == "ready"){
+            $location.path("/tableReady")
+          }
+          console.log("restaurant sent " + response.message)
         })
         .error(function(response)  {
           console.log(response)
@@ -53,6 +57,5 @@ $http.get('http://localhost:3000/patrons/2')
       $scope.parties_ahead = data.parties_ahead
       })
     }, 60000)
-
 
 }])
