@@ -5,7 +5,6 @@ angular.module('restaurantApp')
 console.log("patronMainCtrl")
  var vm = this
 
-
 $http.get('http://localhost:3000/patrons/2')
     .success(function(data) {
       console.log(data)
@@ -20,7 +19,6 @@ $http.get('http://localhost:3000/patrons/2')
       console.log(data)
     })
 
-
     $scope.noWaitList = function() {
       $location.path("/noWaitList")
     }
@@ -28,15 +26,14 @@ $http.get('http://localhost:3000/patrons/2')
     setInterval(function() {
       $http.get('http://localhost:3000/restaurants/' + $scope.waitInfo.restaurant_id + '/reservations/' + $scope.waitInfo.id + '/send_alert')
         .success(function(response)  {
-          console.log(response)
-          if (response.message == "ready") {
+          if (response.message == "ready"){
             $location.path("/tableReady")
           }
         })
         .error(function(response)  {
           console.log(response)
         })
-    }, 3000)
+    }, 60000)
 
 // updates every minute when restaurant adds/subtracts minutes from reservations
     setInterval(function() {
@@ -51,6 +48,16 @@ $http.get('http://localhost:3000/patrons/2')
         $location.path("/noWaitList")
       })
     }, 60000)
+
+    $scope.cancel = function(reservation) {
+    $http.post('http://localhost:3000/restaurants/' + reservation.restaurant_id + '/cancellation', reservation)
+      .success(function(response)  {
+        console.log(response)
+    })
+      .error(function(response){
+        console.log(response)
+      })
+  }
 
     $scope.onTimeout = function(){
       if ($scope.waitInfo.seconds > 0) {
@@ -67,5 +74,4 @@ $http.get('http://localhost:3000/patrons/2')
       mytimeout = $timeout($scope.onTimeout,1000);
     }
     var mytimeout = $timeout($scope.onTimeout,1000);
-
 }])
