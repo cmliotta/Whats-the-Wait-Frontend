@@ -5,17 +5,19 @@ angular.module('restaurantApp')
 console.log("patronMainCtrl")
  var vm = this
 
-$http.get('http://localhost:3000/patrons/1')
+
+$http.get('http://localhost:3000/patrons/2')
     .success(function(data) {
+      console.log(data)
       $scope.waitInfo = data.waitInfo
-      $scope.waitInfo.seconds = 00
+      $scope.waitInfo.seconds = 0
       $scope.restaurant = data.restaurant
       $scope.parties_ahead = data.parties_ahead
-      // console.log($scope.parties_ahead)
     })
     .error(function(data){
       console.log(data)
     })
+
     $scope.onTimeout = function(){
       if ($scope.waitInfo.seconds > 0) {
         $scope.waitInfo.seconds--;
@@ -31,4 +33,28 @@ $http.get('http://localhost:3000/patrons/1')
       mytimeout = $timeout($scope.onTimeout,1000);
     }
     var mytimeout = $timeout($scope.onTimeout,1000);
+
+    setInterval(function() {
+      $http.get('http://localhost:3000/restaurants/' + $scope.waitInfo.restaurant_id + '/reservations/' + $scope.waitInfo.id + '/send_alert')
+        .success(function(response)  {
+          // if (response.reservation.id == $scope.waitInfo.id){
+            console.log(response)
+        // }
+        })
+        .error(function(response)  {
+          console.log(response)
+        })
+    }, 30000)
+
+    setInterval(function() {
+      $http.get('http://localhost:3000/patrons/2')
+      .success(function(data){
+      $scope.waitInfo = data.waitInfo
+      $scope.waitInfo.seconds = 0
+      $scope.restaurant = data.restaurant
+      $scope.parties_ahead = data.parties_ahead
+      })
+    }, 60000)
+
+
 }])
