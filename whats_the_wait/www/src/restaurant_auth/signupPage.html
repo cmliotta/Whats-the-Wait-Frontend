@@ -1,28 +1,56 @@
 <ion-view>
   <ion-content>
-    <h1>restaurant sign up here!</h1>
-    <h2>Registration Form</h2>
-      <div>
-        <label>First Name</label>
-        <input type='text' ng-model='firstName'><br/>
+    <form class="restaurant-form">
+
+      <h2>Restaurant Registration Form</h2>
+      <p>
+      <label>First Name</label>
+          <input type="text" ng-model="firstName" placeholder = "First Name" required>
+      </p>
+
+      <p>
         <label>Last Name</label>
-        <input type='text' ng-model='lastName'><br/>
+        <input type="text" ng-model="lastName" placeholder="Last Name" required>
+      </p>
+
+      <p>
         <label>Email</label>
-        <input type='text' ng-model='email'><br/>
+        <input type="text" ng-model="email" placeholder="Email" required>
+      </p>
+
+      <p>
         <label>Restaurant Name</label>
-        <input type='text' ng-model='restaurantName'><br/>
+        <input type="text" ng-model="restaurantName" placeholder="Restaurant Name" required>
+      </p>
+
+      <p>
         <label>Phone</label>
-        <input type='text' ng-model='phone'><br/>
+        <input type="text" ng-model="phone" placeholder="Phone Number" required>
+      </p>
+
+      <p>
         <label>Password</label>
-        <input type='password' ng-model='password'><br/>
+        <input type="password" ng-model="password" placeholder="Password" required>
+      </p>
+
+      <p>
         <label>City</label>
-        <input type='text' ng-model='city'><br/>
+        <input type="text" ng-model="city" placeholder="City" required>
+      </p>
+
+      <p>
         <label>State</label>
-        <input type='text' ng-model='state'><br/>
+        <input type="text" ng-model="state" placeholder="State" required>
+      </p>
+
+      <p>
         <label>Zip Code</label>
-        <input type='text' ng-model='zip'><br/>
-        <button type='submit' ng-click='addUser(firstName, lastName, email, restaurantName, phone, password, city, state, zip)'>Register</button>
-        <a href='./signin.html'>
-      </div>
+        <input type="text" ng-model="zip" placeholder="Zip code" required>
+      </p>
+
+      <p>
+        <input type="submit" ng-click="addUser(firstName, lastName, email, restaurantName, phone, password, city, state, zip)" value="Register">
+      </p>
+    </form>
   </ion-content>
 </ion-view>
