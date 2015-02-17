@@ -38,6 +38,7 @@ angular.module('restaurantApp')
 
   $scope.cancelAddReservation = function(){
     $scope.addForm = false;
+    angular.element(document.querySelector('#error'))[0].innerHTML = ""
   }
 
   $scope.addReservation = function(cellPhone, numberOfPeople, minutes) {
@@ -114,5 +115,4 @@ angular.module('restaurantApp')
         console.log(response)
     })
   }
-
 }])

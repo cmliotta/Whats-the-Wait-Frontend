@@ -9,5 +9,11 @@ angular.module('restaurantApp')
     controller    : 'patronMainCtrl'
   })
 
+  .state('tableReady', {
+    url           : "/tableReady",
+    templateUrl   : "src/patron_main/tableReady.html",
+    controller    : 'patronMainCtrl'
+  })
+
   $urlRouterProvider.otherwise('/')
 });

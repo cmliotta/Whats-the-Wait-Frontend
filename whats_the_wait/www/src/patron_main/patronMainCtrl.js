@@ -1,6 +1,6 @@
 angular.module('restaurantApp')
 
-.controller('patronMainCtrl', ['patronFactory', '$scope', '$http', '$timeout', function(patronAuthFactory, $scope, $http, $timeout) {
+.controller('patronMainCtrl', ['patronFactory', '$scope', '$http', '$timeout', '$location', function(patronAuthFactory, $scope, $http, $timeout, $location) {
 
 console.log("patronMainCtrl")
  var vm = this
@@ -28,7 +28,7 @@ $http.get('http://localhost:3000/patrons/2')
         $scope.waitInfo.seconds = 59
         $scope.waitInfo.minutes--
       } else {
-        angular.element(document.querySelector('#container'))[0].innerHTML = "You're Table is ready!"
+        $location.path("/tableReady")
       }
       mytimeout = $timeout($scope.onTimeout,1000);
     }
@@ -37,14 +37,12 @@ $http.get('http://localhost:3000/patrons/2')
     setInterval(function() {
       $http.get('http://localhost:3000/restaurants/' + $scope.waitInfo.restaurant_id + '/reservations/' + $scope.waitInfo.id + '/send_alert')
         .success(function(response)  {
-          // if (response.reservation.id == $scope.waitInfo.id){
-            console.log(response)
-        // }
+          $location.path("/tableReady")
         })
         .error(function(response)  {
           console.log(response)
         })
-    }, 30000)
+    }, 3000)
 
     setInterval(function() {
       $http.get('http://localhost:3000/patrons/2')
