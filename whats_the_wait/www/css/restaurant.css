@@ -42,7 +42,7 @@
 
   /* font styles */
   font-family: "Raleway", "Lato", Arial, sans-serif;
-  color: teal;
+  color: purple;
   font-size: 13px;
 }
 
@@ -135,10 +135,3 @@
 
 /*=========== RESTAURANT MAIN ===========  */
 
-.container {
-  background-color: pink;
-  width: 300px;
-  margin: 60px auto 30px;
-  padding: 10px;
-  position: relative;
-}
