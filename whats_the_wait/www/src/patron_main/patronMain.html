@@ -18,11 +18,11 @@
           </div>
           <hr>
 
-          <button class="remove">Remove Me From Wait List</button>
+          <button ng-click='cancel(waitInfo)' class="remove">Remove Me From Wait List</button>
 
 
         <!-- <h1 id="range">- {{waitInfo.minutes + 10}}:{{waitInfo.seconds}}  Minutes</h1> -->
-        <div class="contact" ng-click='cancel()'><a href="">Contact {{restaurant.restaurant_name}}: {{restaurant.phone}}</a></div>
+        <div class="contact"><a href="">Contact {{restaurant.restaurant_name}}: {{restaurant.phone}}</a></div>
       </div>
 
     </body>

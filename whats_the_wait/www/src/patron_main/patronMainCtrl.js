@@ -5,7 +5,6 @@ angular.module('restaurantApp')
 console.log("patronMainCtrl")
  var vm = this
 
-
 $http.get('http://localhost:3000/patrons/2')
     .success(function(data) {
       console.log(data)
@@ -41,12 +40,12 @@ $http.get('http://localhost:3000/patrons/2')
           if (response.message == "ready"){
             $location.path("/tableReady")
           }
-          console.log("restaurant sent " + response.message)
+          // console.log("restaurant sent " + response.message)
         })
         .error(function(response)  {
           console.log(response)
         })
-    }, 3000)
+    }, 60000)
 
     setInterval(function() {
       $http.get('http://localhost:3000/patrons/2')
@@ -58,4 +57,13 @@ $http.get('http://localhost:3000/patrons/2')
       })
     }, 60000)
 
+    $scope.cancel = function(reservation) {
+    $http.post('http://localhost:3000/restaurants/' + reservation.restaurant_id + '/cancellation', reservation)
+      .success(function(response)  {
+        console.log(response)
+    })
+      .error(function(response){
+        console.log(response)
+      })
+  }
 }])

@@ -106,6 +106,7 @@ angular.module('restaurantApp')
           console.log(reservation);
           var index = $scope.reservations.indexOf(reservation)
           $scope.reservations.splice(index, 1)
+          angular.element(document.querySelector('#error'))[0].innerHTML = ""
       })
     }
 
@@ -115,4 +116,15 @@ angular.module('restaurantApp')
         console.log(response)
     })
   }
+
+  setInterval(function() {
+    $http.get('http://localhost:3000/restaurants/' + $scope.restaurant.id + '/check_cancellations')
+    .success(function(data){
+      console.log(data.message)
+      if (data.message) {
+        angular.element(document.querySelector('#error'))[0].innerHTML = data.message
+      }
+    })
+  }, 10000)
+
 }])
