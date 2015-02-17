@@ -7,15 +7,16 @@ console.log("patronMainCtrl")
 
 $http.get('http://localhost:3000/patrons/1')
     .success(function(data) {
+      console.log(data)
       $scope.waitInfo = data.waitInfo
-      $scope.waitInfo.seconds = 00
+      $scope.waitInfo.seconds = 0
       $scope.restaurant = data.restaurant
       $scope.parties_ahead = data.parties_ahead
-      // console.log($scope.parties_ahead)
     })
     .error(function(data){
       console.log(data)
     })
+
     $scope.onTimeout = function(){
       if ($scope.waitInfo.seconds > 0) {
         $scope.waitInfo.seconds--;
