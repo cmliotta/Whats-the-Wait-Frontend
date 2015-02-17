@@ -1,41 +1,9 @@
-* {
-  /*background-color:   #787878;*/
-}
+/*=========== RESTAURANT SIGN UP ===========  */
 
-#userSign {
-  background-color: gray;
-  text-align: center;
-  border: 2px solid;
-  padding: 25px;
-  margin: 150px 75px 25px 75px;
-  border-radius: 25px;
-}
-
-#restaurantSign {
-  background-color: pink;
-  text-align: center;
-  /*border: 15px solid transparent;*/
-  border: 2px solid;
-  padding: 25px;
-  margin: 25px 75px 0px 75px;
-  border-radius: 25px;
- /* -webkit-border-image: url("/img/border.png") 30 30 stretch;
-  -o-border-image: url("/img/border.png") 30 30 stretch;
-  border-image: url("/img/border.png") 25 25 stretch;*/
-}
-
-/*h3 {
-  font-family: "Lucida Sans Unicode";
-}
-
-li {
-  font-family: "Lucida Sans Unicode";b
-}*/
-
-.form {
+.restaurant-form {
   /* size and position */
   width: 300px;
-  margin: 60px auto 30px;
+  margin: 30px auto 30px;
   padding: 10px;
   position: relative;
 
@@ -45,14 +13,14 @@ li {
   text-shadow: 0 2px 1px rgba(0,0,0,0.3);
 }
 
-.form h2 {
+.restaurant-form h2 {
   text-align: center;
   font-size: 22px;
   padding-bottom: 20px;
 }
 
-.form input[type=text],
-.form input[type=password] {
+.restaurant-form input[type=text],
+.restaurant-form input[type=password] {
   /* size and position */
   width: 100%;
   padding: 8px 4px 8px 10px;
@@ -79,29 +47,29 @@ li {
 }
 
 /* style for placeholders */
-.form input::-webkit-input-placeholder {
+.restaurant-form input::-webkit-input-placeholder {
   color: rgba(37,21,26,0.5);
   text-shadow: 0 1px 0 rgba(255,255,255,0.15);
 }
 
-.form input:-moz-placeholder {
+.restaurant-form input:-moz-placeholder {
     color: rgba(37,21,26,0.5);
     text-shadow: 0 1px 0 rgba(255,255,255,0.15);
 }
 
-.form input:-ms-input-placeholder {
+.restaurant-form input:-ms-input-placeholder {
     color: rgba(37,21,26,0.5);
     text-shadow: 0 1px 0 rgba(255,255,255,0.15);
 }
 
-.form input[type=text]:hover,
-.form input[type=password]:hover {
+.restaurant-form input[type=text]:hover,
+.restaurant-form input[type=password]:hover {
     border-color: #333;
 }
 
-.form input[type=text]:focus,
-.form input[type=password]:focus,
-.form input[type=submit]:focus {
+.restaurant-form input[type=text]:focus,
+.restaurant-form input[type=password]:focus,
+.restaurant-form input[type=submit]:focus {
     box-shadow:
         0 1px 0 rgba(255,255,255,0.2),
         inset 0 1px 1px rgba(0,0,0,0.1),
@@ -110,12 +78,12 @@ li {
 }
 
 /* Fallback */
-.no-boxshadow .form input[type=text]:focus,
-.no-boxshadow .form input[type=password]:focus {
+.no-boxshadow .restaurant-form input[type=text]:focus,
+.no-boxshadow .restaurant-form input[type=password]:focus {
     outline: 1px solid white;
 }
 
-.form input[type=submit] {
+.restaurant-form input[type=submit] {
     /* Size and position */
     width: 100%;
     padding: 8px 5px;
@@ -138,28 +106,39 @@ li {
     font-family: 'Raleway', 'Lato', Arial, sans-serif;
 }
 
-.form input[type=submit]:hover {
+.restaurant-form input[type=submit]:hover {
     box-shadow:
         inset 0 1px rgba(255,255,255,0.2),
         inset 0 20px 30px rgba(99,64,86,0.5);
 }
 
 /* Fallback */
-.no-boxshadow .form input[type=submit]:hover {
+.no-boxshadow .restaurant-form input[type=submit]:hover {
     background: #594642;
 }
 
 /* placeholder fallback */
-.form label {
+.restaurant-form label {
     display: none;
     padding: 0 0 5px 2px;
     cursor: pointer;
 }
 
-.form label:hover ~ input {
+.restaurant-form label:hover ~ input {
     border-color: #333;
 }
 
-.no-placeholder .form label {
+.no-placeholder .restaurant-form label {
     display: block;
+}
+
+
+/*=========== RESTAURANT MAIN ===========  */
+
+.container {
+  background-color: pink;
+  width: 300px;
+  margin: 60px auto 30px;
+  padding: 10px;
+  position: relative;
 }
