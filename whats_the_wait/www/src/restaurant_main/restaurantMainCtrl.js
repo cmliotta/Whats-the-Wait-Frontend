@@ -32,22 +32,20 @@ angular.module('restaurantApp')
     }
     var mytimeout = $timeout($scope.onTimeout,60000);
 
-  $scope.showAddForm = function() {
-    $scope.addForm = true;
-  };
+  $scope.initNewReservation = function() {
+    $scope.newReservation = {cell_phone: "", party_size: 2, minutes: 10};
+  }
 
   $scope.cancelAddReservation = function(){
-    $scope.addForm = false;
+    delete $scope.newReservation;
     angular.element(document.querySelector('#error'))[0].innerHTML = ""
   }
 
-  $scope.addReservation = function(cellPhone, numberOfPeople, minutes) {
-    var newReservation = {cell_phone: cellPhone, party_size: numberOfPeople, minutes: minutes};
-
-    $http.post('http://localhost:3000/restaurants/' + $scope.restaurant.id + '/reservations', newReservation)
+  $scope.addReservation = function() {
+    $http.post('http://localhost:3000/restaurants/' + $scope.restaurant.id + '/reservations', $scope.newReservation)
       .success(function(data) {
         $scope.reservations.push(data);
-        $scope.addForm = false;
+        delete $scope.newReservation;
         angular.element(document.querySelector('#error'))[0].innerHTML = ""
       })
       .error(function(data){
@@ -100,17 +98,31 @@ angular.module('restaurantApp')
       })
     }
 
+
+    $scope.openDialog = function(reservation) {
+      el = document.getElementById("overlay");
+      el.style.visibility = "visible";
+    }
+
+    $scope.closeDialog = function() {
+      el = document.getElementById("overlay");
+      el.style.visibility = "hidden";
+    }
+
    $scope.remove = function(reservation) {
-    if(confirm('Are you sure?')) {
+    $scope.removalInProgress = true
+      if(false) {
       $http.delete('http://localhost:3000/restaurants/' + reservation.restaurant_id + '/reservations/' + reservation.id)
         .success(function()  {
           console.log(reservation);
           var index = $scope.reservations.indexOf(reservation)
           $scope.reservations.splice(index, 1)
           angular.element(document.querySelector('#error'))[0].innerHTML = ""
-      })
+        })
+        } else if (true) {
+          // closeDialog
+        }
     }
-  }
 
   $scope.seated = function(reservation) {
     $http.post('http://localhost:3000/restaurants/' + reservation.restaurant_id + '/reservations/' + reservation.id + '/send_alert')

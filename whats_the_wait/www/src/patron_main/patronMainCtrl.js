@@ -32,7 +32,7 @@ $http.get('http://localhost:3000/patrons/2')
         .error(function(response)  {
           console.log(response)
         })
-    }, 60000)
+    }, 3000)
 
     setInterval(function() {
       if($scope.waitInfo.minutes > 0) {
