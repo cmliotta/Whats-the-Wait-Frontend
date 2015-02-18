@@ -1,9 +1,43 @@
 <ion-view>
   <ion-content>
-    <form class="patron-form">
+<!--     <form class="patron-form"> -->
 
-      <h2>User Registration Form</h2>
-      <p>
+      <div class="list list-inset">
+
+        <label class="item item-input">
+          <input type="text" ng-model="firstName" placeholder="First Name" required>
+        </label>
+
+        <label class="item item-input">
+          <input type="text" ng-model="lastName" placeholder="Last Name" required>
+        </label>
+
+        <label class="item item-input">
+          <input type="email" ng-model="email" placeholder="Email" required>
+        </label>
+
+        <label class="item item-input">
+          <input type="text" ng-model="cellPhone" placeholder="Cell Phone" required>
+        </label>
+
+        <label class="item item-input">
+          <input type="password" ng-model="password" placeholder="Password" required>
+        </label>
+
+      </div>
+
+      <div class="list item-input-inset">
+
+        <button class="button button-block button-royal" type="submit" ng-click="addUser(firstName, lastName, email, phoneNumber, password)">
+          Sign Up
+        </button>
+
+      </div>
+
+
+
+
+     <!--  <p>
         <label>First Name</label>
         <input type="text" ng-model="firstName" placeholder="First Name" required>
       </p>
@@ -31,6 +65,6 @@
       <p>
         <input type="submit" ng-click="addUser(firstName, lastName, email, phoneNumber, password)" value="Sign Up">
       </p>
-    </form>
+    </form> -->
   </ion-content>
 </ion-view>

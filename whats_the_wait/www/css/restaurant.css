@@ -8,7 +8,7 @@
   position: relative;
 
   /* font styles */
-  font-family: "Raleway", "Lato", Arial, sans-serif;
+/*  font-family: "Lato", Helvetica, sans-serif;*/
   color: white;
   text-shadow: 0 2px 1px rgba(0,0,0,0.3);
 }
@@ -41,7 +41,7 @@
   transition: all 0.3s ease-out;
 
   /* font styles */
-  font-family: "Raleway", "Lato", Arial, sans-serif;
+/*  font-family: "Lato", Helvetica, sans-serif;*/
   color: purple;
   font-size: 13px;
 }
@@ -103,7 +103,7 @@
     text-shadow: 0 1px 0 rgba(0,0,0,0.3);
     font-size: 16px;
     font-weight: bold;
-    font-family: 'Raleway', 'Lato', Arial, sans-serif;
+    font-family: 'Raleway', 'Lato', Helvetica, sans-serif;
 }
 
 .restaurant-form input[type=submit]:hover {

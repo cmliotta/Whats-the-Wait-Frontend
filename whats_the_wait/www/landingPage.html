@@ -1,31 +1,33 @@
 <ion-view view-title="Landing Page">
  <ion-content class="landing-page">
-    <div class="card layout">
-      <!-- <div class="item item-text-wrap"> -->
+
+    <div class="logo">
+      <img src="img/logo.png"/>
+    </div>
+
+    <div class="card patron-card">
         <h3>Patron</h3>
+          <hr>
         <ul>
-          <li>
-            <a ui-sref="patronLogin" class="button button-clear button-calm">Sign-In</a>
-          </li>
-
-          <li>
-            <a ui-sref="patronSignup" class="button button-clear button-royal">Sign Up</a>
+          <li class="patron-sign-in">
+            <a ui-sref="patronLogin" class="button button-large button-clear"><b>Sign-In</b></a>
           </li>
         </ul>
     </div>
 
-    <div class="card">
-      <!-- <div class="item item-text-wrap"> -->
+    <div class="card restaurant-card">
         <h3>Restaurant</h3>
+          <hr>
         <ul>
           <li>
-            <a ui-sref="restaurantLogin" class="button button-clear button-calm">Sign-In</a>
-          </li>
-
-          <li>
-            <a ui-sref="restaurantSignup" class="button button-clear button-royal">Sign Up</a>
+            <a ui-sref="restaurantLogin" class="button button-large button-clear"><b>Sign-In</b></a>
           </li>
         </ul>
     </div>
+
+    <div class="sign-up-link">
+      <a ui-sref="patronSignup"> Sign Up for What's The Wait? </a>
+    </div>
+
   </ion-content>
 </ion-view>

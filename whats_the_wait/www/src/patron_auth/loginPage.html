@@ -1,7 +1,13 @@
-<ion-view>
-  <ion-content>
-    <h1> patron Log in here!</h1>
+<ion-view view-title="Login Page">
+ <ion-content class="login-page">
+
+    <div class="logo">
+      <img src="img/logo.png"/>
+    </div>
+
     <form >
+      <input type='text' name="cell_phone" placeholder="Cell Phone">
+      <input type="password" name="password" placeholder="Password">
       <button ng-click="patronLogin()">Log in</button>
     </form>
   </ion-content>
