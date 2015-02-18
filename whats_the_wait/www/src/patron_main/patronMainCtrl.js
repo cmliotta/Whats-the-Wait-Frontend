@@ -25,15 +25,14 @@ $http.get('http://localhost:3000/patrons/2')
     setInterval(function() {
       $http.get('http://localhost:3000/restaurants/' + $scope.waitInfo.restaurant_id + '/reservations/' + $scope.waitInfo.id + '/send_alert')
         .success(function(response)  {
-          console.log(response)
-          if (response.message == "ready") {
+          if (response.message == "ready"){
             $location.path("/tableReady")
           }
         })
         .error(function(response)  {
           console.log(response)
         })
-    }, 3000)
+    }, 60000)
 
     setInterval(function() {
       if($scope.waitInfo.minutes > 0) {
@@ -51,6 +50,16 @@ $http.get('http://localhost:3000/patrons/2')
         })
       }
     }, 60000)
+
+    $scope.cancel = function(reservation) {
+    $http.post('http://localhost:3000/restaurants/' + reservation.restaurant_id + '/cancellation', reservation)
+      .success(function(response)  {
+        console.log(response)
+    })
+      .error(function(response){
+        console.log(response)
+      })
+  }
 
     $scope.onTimeout = function(){
       if ($scope.waitInfo.seconds > 0) {
@@ -79,5 +88,4 @@ $http.get('http://localhost:3000/patrons/2')
       mytimeout = $timeout($scope.onTimeout,1000);
       }
     var mytimeout = $timeout($scope.onTimeout,1000);
-
 }])
