@@ -1,14 +1,29 @@
 <ion-view view-title="Login Page">
- <ion-content class="login-page">
 
-    <div class="logo">
-      <img src="img/logo.png"/>
+    <div class="bar bar-header bar-stable">
+      <h1 class="title">Sign In</h1>
     </div>
 
-    <form >
-      <input type='text' name="cell_phone" placeholder="Cell Phone">
-      <input type="password" name="password" placeholder="Password">
-      <button ng-click="patronLogin()">Log in</button>
-    </form>
+ <ion-content class="login-page">
+      <div class="list list-inset sign-in ">
+
+        <label class="item item-input">
+          <input type="text" ng-model="cellPhone" placeholder="Cell Phone" required>
+        </label>
+
+        <label class="item item-input">
+          <input type="text" ng-model="password" placeholder="Password" required>
+        </label>
+
+      </div>
+
+      <div class="list item-input-inset">
+
+        <button class="button button-block button-royal" type="submit" ng-click="patronLogin(phoneNumber, password)">
+          Sign In
+        </button>
+
+      </div>
+
   </ion-content>
 </ion-view>

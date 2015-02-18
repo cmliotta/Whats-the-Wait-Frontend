@@ -16,30 +16,29 @@ a {
   color: #272727;
 }
 
-
 img {
   display: block;
-  margin-top: 10%;
+  margin-top: 25%;
   margin-left: auto;
   margin-right: auto;
   height: 150px;
   width: 150px;
 }
 
-
 .patron-card {
   background-color: #8A6DE9;
-  margin: 75px 50px 0 50px;
+  margin: 50px 50px 0 50px;
   border: 1px solid #737373;
   padding-top: 10px;
 }
 
 .restaurant-card {
   background-color: #007A7A;
-  margin: 50px 50px 0 50px;
+  margin: 40px 50px 0 50px;
   border: 1px solid #737373;
   padding-top: 10px;
 }
+
 
 
 h3 {
@@ -54,25 +53,77 @@ a {
   text-decoration: none;
 }
 
-
 /*=========== PATRON SIGN UP ===========  */
 
 .button {
   background-color: #7C53CF;
+
 }
 
+.sign-up-link {
+  margin-top: -20px;
+}
 
+.sign-up {
+  margin-top: 20%;
+}
+
+/*=========== PATRON SIGN-IN ===========  */
+
+.sign-in {
+  margin-top: 20%;
+}
+
+/*=========== PATRON NO WAIT LIST===========  */
+
+.no-wait-list {
+  text-align: center;
+}
+
+.no-wait-container {
+  border: 3px solid gray;
+  background-color: gray;
+  opacity: .4;
+  padding: 45px;
+  margin: 60px 25px;
+}
 
 /*=========== PATRON MAIN ===========  */
 
+.restaurant-name {
+  margin-top: 10%;
+  padding: 0px 40px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .patron-main {
-  padding-top: 20px;
+  margin-top: 40%;
+  padding-top: 15px;
+  padding-bottom: 25px;
+}
+
+.wait-time-header {
+  margin-top: 20px;
+  margin-bottom: 70px;
+}
+
+.parties-ahead {
+  margin-top: 80px;
+  padding-bottom: 10px;
+  font-weight: bold;
+  font-size: 25px;
+}
+
+.timer {
+  font-size: 115px;
+  color: teal;
 }
 
 .button-patron-main {
-  margin: 20px 0 20px 0;
+  margin-top: 15px;
+  padding: 0px 30px;
 }
 
-.contact {
-  margin-bottom: 20px;
-}
+
