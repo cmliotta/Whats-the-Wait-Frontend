@@ -92,10 +92,11 @@ a {
 
 .restaurant-name {
   margin-top: 10%;
-  padding: 0px 40px;
+  padding: 0px 15px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  font-size: 15px;
 }
 
 .patron-main {
@@ -117,13 +118,16 @@ a {
 }
 
 .timer {
-  font-size: 115px;
+  font-size: 55px;
+  font-weight: bold;
   color: teal;
 }
 
 .button-patron-main {
   margin-top: 15px;
-  padding: 0px 30px;
-}
+  padding: 0px 10px;
+  font-weight: bold;
+  font-size: 15px;
+  }
 
 

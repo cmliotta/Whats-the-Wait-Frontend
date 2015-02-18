@@ -1,10 +1,14 @@
 <ion-view>
+    <div class="bar bar-header bar-stable">
+      <button class="button button-icon icon ion-navicon"></button>
+      <div class="h1 title">Hello, {{waitInfo.first_name}}!  </div>
+      <button class="button button-clear ion-refresh"></button>
+    </div>
+
   <ion-content>
-    <head>
-      <!-- <link rel="stylesheet" href="patron.css"> -->
-    </head>
+
     <body>
-      <div class="card">
+      <div class="card restaurant-main">
         <h2>{{restaurant.restaurant_name}}</h2>
 
         <button ng-click="initNewReservation()" class="button button-small button-calm">Add Reservation</button>
@@ -54,6 +58,7 @@
         <select type="text" ng-model="uiState.party_size">
           <option value="2">1-2</option>
           <option value="4">3-4</option>
+          <option value=5>5+</option>
         </select>
 
         <button ng-click="addTime()">+5</button>
