@@ -2,12 +2,10 @@ angular.module('restaurantApp')
 
   .controller('restaurantMainCtrl', ['restaurantFactory', '$scope', '$http', '$timeout', function(restaurantFactory, $scope, $http, $timeout) {
 
-  console.log("restaurantMainCtrl")
-
-  var vm = this
   $scope.uiState = {party_size: "2"}
 
-  $http.get('http://localhost:3000/restaurants/1/reservations')
+  var getReservations = function () {
+    $http.get('http://localhost:3000/restaurants/1/reservations')
     .success(function(data) {
       $scope.reservations = [];
       $scope.restaurant = data.restaurant;
@@ -20,11 +18,13 @@ angular.module('restaurantApp')
         $scope.reservations[i].seconds = 59;
       }
     });
+  }
+  getReservations()
 
     $scope.onTimeout = function(){
       for (var i = 0; i < $scope.reservations.length; i++) {
         if ($scope.reservations[i].minutes > 0) {
-          $scope.reservations[i].minutes --
+          $scope.reservations[i].minutes--
           $http.post('http://localhost:3000/restaurants/' + $scope.restaurant.id + '/reservations/countdown/' + $scope.reservations[i].id)
         }
       }
@@ -32,26 +32,24 @@ angular.module('restaurantApp')
     }
     var mytimeout = $timeout($scope.onTimeout,60000);
 
-  $scope.showAddForm = function() {
-    $scope.addForm = true;
-  };
-
-  $scope.cancelAddReservation = function(){
-    $scope.addForm = false;
-    angular.element(document.querySelector('#error'))[0].innerHTML = ""
+  $scope.initNewReservation = function() {
+    $scope.newReservation = {cell_phone: "", party_size: 2, minutes: 10};
   }
 
-  $scope.addReservation = function(cellPhone, numberOfPeople, minutes) {
-    var newReservation = {cell_phone: cellPhone, party_size: numberOfPeople, minutes: minutes};
+  $scope.cancelAddReservation = function(){
+    delete $scope.newReservation;
+    $scope.error = ""
+  }
 
-    $http.post('http://localhost:3000/restaurants/' + $scope.restaurant.id + '/reservations', newReservation)
+  $scope.addReservation = function() {
+    $http.post('http://localhost:3000/restaurants/' + $scope.restaurant.id + '/reservations', $scope.newReservation)
       .success(function(data) {
         $scope.reservations.push(data);
-        $scope.addForm = false;
-        angular.element(document.querySelector('#error'))[0].innerHTML = ""
+        delete $scope.newReservation;
+        $scope.error = ""
       })
       .error(function(data){
-        angular.element(document.querySelector('#error'))[0].innerHTML = "The phone number does not match any user"
+        $scope.error = "The phone number does not match any user"
       })
     }
 
@@ -100,23 +98,40 @@ angular.module('restaurantApp')
       })
     }
 
-   $scope.remove = function(reservation) {
-    if(confirm('Are you sure?')) {
-      $http.delete('http://localhost:3000/restaurants/' + reservation.restaurant_id + '/reservations/' + reservation.id)
-        .success(function()  {
-          console.log(reservation);
-          var index = $scope.reservations.indexOf(reservation)
-          $scope.reservations.splice(index, 1)
-          angular.element(document.querySelector('#error'))[0].innerHTML = ""
-      })
+   $scope.initRemove = function(reservation) {
+    $scope.reservationToRemove = angular.copy(reservation);
     }
+
+    $scope.confirmReservationRemoval = function() {
+      $http.delete('http://localhost:3000/restaurants/' + $scope.reservationToRemove.restaurant_id + '/reservations/' + $scope.reservationToRemove.id)
+        .success(function()  {
+          delete $scope.reservationToRemove
+          var index = $scope.reservations.indexOf($scope.reservationToRemove);
+          $scope.reservations.splice(index, 1);
+          $scope.error = "";
+          getReservations()
+        })
+    }
+
+    $scope.cancelReservationRemoval = function() {
+      delete $scope.reservationToRemove;
+    }
+
+  $scope.initTableReady = function(reservation) {
+    $scope.tableReady = angular.copy(reservation);
   }
 
-  $scope.seated = function(reservation) {
-    $http.post('http://localhost:3000/restaurants/' + reservation.restaurant_id + '/reservations/' + reservation.id + '/send_alert')
+  $scope.confirmTableReady = function() {
+    $http.post('http://localhost:3000/restaurants/' + $scope.tableReady.restaurant_id + '/reservations/' + $scope.tableReady.id + '/send_alert')
       .success(function(response)  {
+        delete $scope.tableReady;
         console.log(response)
+        getReservations()
     })
+  }
+
+  $scope.cancelTableReady = function() {
+    delete $scope.tableReady
   }
 
   setInterval(function() {
@@ -124,7 +139,7 @@ angular.module('restaurantApp')
     .success(function(data){
       console.log(data.message)
       if (data.message) {
-        angular.element(document.querySelector('#error'))[0].innerHTML = data.message
+        $scope.error = data.message
       }
     })
   }, 10000)

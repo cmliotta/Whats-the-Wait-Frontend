@@ -2,13 +2,13 @@ angular.module('restaurantApp')
 
 .controller('patronMainCtrl', ['patronFactory', '$scope', '$http', '$timeout', '$location', function(patronAuthFactory, $scope, $http, $timeout, $location) {
 
-$http.get('http://localhost:3000/patrons/2')
+$http.get('http://localhost:3000/patrons/1')
     .success(function(data) {
       console.log(data)
       $location.path("/patronMain")
       $scope.waitInfo = data.waitInfo
       $scope.waitInfo.seconds = 0 + '0'
-      $scope.waitInfo.range = $scope.waitInfo.minutes + 5
+      $scope.waitInfo.range = $scope.waitInfo.minutes + 1
       $scope.waitInfo.rangeSeconds = 0 + '0'
       $scope.restaurant = data.restaurant
       $scope.parties_ahead = data.parties_ahead
@@ -32,15 +32,15 @@ $http.get('http://localhost:3000/patrons/2')
         .error(function(response)  {
           console.log(response)
         })
-    }, 60000)
+    }, 1000)
 
     setInterval(function() {
       if($scope.waitInfo.minutes > 0) {
-        $http.get('http://localhost:3000/patrons/2')
+        $http.get('http://localhost:3000/patrons/1')
         .success(function(data){
         $scope.waitInfo = data.waitInfo
         $scope.waitInfo.seconds = 0 + '0'
-        $scope.waitInfo.range = $scope.waitInfo.minutes + 5
+        $scope.waitInfo.range = $scope.waitInfo.minutes + 1
         $scope.waitInfo.rangeSeconds = 0 + '0'
         $scope.restaurant = data.restaurant
         $scope.parties_ahead = data.parties_ahead
@@ -51,15 +51,6 @@ $http.get('http://localhost:3000/patrons/2')
       }
     }, 60000)
 
-    $scope.cancel = function(reservation) {
-    $http.post('http://localhost:3000/restaurants/' + reservation.restaurant_id + '/cancellation', reservation)
-      .success(function(response)  {
-        console.log(response)
-    })
-      .error(function(response){
-        console.log(response)
-      })
-  }
 
     $scope.onTimeout = function(){
       if ($scope.waitInfo.seconds > 0) {
@@ -88,4 +79,22 @@ $http.get('http://localhost:3000/patrons/2')
       mytimeout = $timeout($scope.onTimeout,1000);
       }
     var mytimeout = $timeout($scope.onTimeout,1000);
+
+    // need to change for patron
+    $scope.confirmCancelReservation = function() {
+      $http.post('http://localhost:3000/restaurants/' + $scope.cancelReservation.restaurant_id + '/cancellation', $scope.cancelReservation)
+        .success(function(response)  {
+          delete $scope.cancelReservation;
+        })
+    }
+
+    $scope.dontCancelReservation = function() {
+      delete $scope.cancelReservation;
+    }
+
+   $scope.initCancelReservation = function(waitInfo) {
+    $scope.cancelReservation = angular.copy(waitInfo);
+
+  }
+
 }])
