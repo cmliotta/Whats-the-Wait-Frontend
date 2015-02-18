@@ -101,6 +101,7 @@ angular.module('restaurantApp')
     }
 
    $scope.remove = function(reservation) {
+    if(confirm('Are you sure?')) {
       $http.delete('http://localhost:3000/restaurants/' + reservation.restaurant_id + '/reservations/' + reservation.id)
         .success(function()  {
           console.log(reservation);
@@ -109,6 +110,7 @@ angular.module('restaurantApp')
           angular.element(document.querySelector('#error'))[0].innerHTML = ""
       })
     }
+  }
 
   $scope.seated = function(reservation) {
     $http.post('http://localhost:3000/restaurants/' + reservation.restaurant_id + '/reservations/' + reservation.id + '/send_alert')
