@@ -124,7 +124,7 @@ angular.module('restaurantApp')
   $scope.confirmTableReady = function() {
     $http.post('http://localhost:3000/restaurants/' + $scope.tableReady.restaurant_id + '/reservations/' + $scope.tableReady.id + '/send_alert')
       .success(function(response)  {
-        delete $scope.tableReady
+        delete $scope.tableReady;
         console.log(response)
         getReservations()
     })

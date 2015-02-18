@@ -2,27 +2,6 @@
   <ion-content>
     <head>
       <!-- <link rel="stylesheet" href="patron.css"> -->
-      <style>
-        #overlay {
-         visibility: hidden;
-         position: absolute;
-         left: 0px;
-         top: 0px;
-         width:100%;
-         height:100%;
-         text-align:center;
-         z-index: 1000;
-        }
-
-        #overlay div {
-         width:300px;
-         margin: 100px auto;
-         background-color: #fff;
-         border:1px solid #000;
-         padding:15px;
-         text-align:center;
-        }
-      </style>
     </head>
     <body>
       <div class="card">
@@ -96,7 +75,7 @@
               <button ng-click='cancelTableReady()'>Cancel</button>
               <button ng-click='confirmTableReady()'>Send Alert</button>
             </div>
-            <td><button ng-click="initTableReady(reservation)"><i class="fa fa-check"></i>Table Ready</button></td>
+            <td ng-hide='reservation.table_ready == "t"' ><button ng-click="initTableReady(reservation)"><i class="fa fa-check"></i>Table Ready</button></td>
             <div ng-show="reservationToRemove">
               <div>
                 <p>Remove from Wait List</p>
