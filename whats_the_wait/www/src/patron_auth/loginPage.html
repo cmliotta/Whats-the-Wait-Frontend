@@ -1,8 +1,29 @@
-<ion-view>
-  <ion-content>
-    <h1> patron Log in here!</h1>
-    <form >
-      <button ng-click="patronLogin()">Log in</button>
-    </form>
+<ion-view view-title="Login Page">
+
+    <div class="bar bar-header bar-stable">
+      <h1 class="title">Sign In</h1>
+    </div>
+
+ <ion-content class="login-page">
+      <div class="list list-inset sign-in ">
+
+        <label class="item item-input">
+          <input type="text" ng-model="cellPhone" placeholder="Cell Phone" required>
+        </label>
+
+        <label class="item item-input">
+          <input type="text" ng-model="password" placeholder="Password" required>
+        </label>
+
+      </div>
+
+      <div class="list item-input-inset">
+
+        <button class="button button-block button-royal" type="submit" ng-click="patronLogin(phoneNumber, password)">
+          Sign In
+        </button>
+
+      </div>
+
   </ion-content>
 </ion-view>

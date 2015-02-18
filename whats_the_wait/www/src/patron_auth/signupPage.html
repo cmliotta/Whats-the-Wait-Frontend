@@ -1,36 +1,40 @@
 <ion-view>
+
+    <div class="bar bar-header bar-stable">
+      <h1 class="title">Sign Up</h1>
+    </div>
+
   <ion-content>
-    <form class="patron-form">
+      <div class="list list-inset sign-up">
 
-      <h2>User Registration Form</h2>
-      <p>
-        <label>First Name</label>
-        <input type="text" ng-model="firstName" placeholder="First Name" required>
-      </p>
+        <label class="item item-input">
+          <input type="text" ng-model="firstName" placeholder="First Name" required>
+        </label>
 
-      <p>
-        <label>Last Name</label>
-        <input type="text" ng-model="lastName" placeholder="Last Name" required>
-      </p>
+        <label class="item item-input">
+          <input type="text" ng-model="lastName" placeholder="Last Name" required>
+        </label>
 
-      <p>
-        <label>Email</label>
-        <input type="text" ng-model="email" placeholder="Email" required>
-      </p>
+        <label class="item item-input">
+          <input type="email" ng-model="email" placeholder="Email" required>
+        </label>
 
-      <p>
-        <label>Cell Phone</label>
-        <input type="text" ng-model="cellPhone" placeholder="Cell phone number" required>
-      </p>
+        <label class="item item-input">
+          <input type="text" ng-model="cellPhone" placeholder="Cell Phone" required>
+        </label>
 
-      <p>
-        <label>Password</label>
-        <input type="password" ng-model="password" placeholder="Password" required>
-      </p>
+        <label class="item item-input">
+          <input type="password" ng-model="password" placeholder="Password" required>
+        </label>
 
-      <p>
-        <input type="submit" ng-click="addUser(firstName, lastName, email, phoneNumber, password)" value="Sign Up">
-      </p>
-    </form>
+      </div>
+
+      <div class="list item-input-inset">
+
+        <button class="button button-block button-royal" type="submit" ng-click="addUser(firstName, lastName, email, phoneNumber, password)">
+          Sign Up
+        </button>
+
+      </div>
   </ion-content>
 </ion-view>

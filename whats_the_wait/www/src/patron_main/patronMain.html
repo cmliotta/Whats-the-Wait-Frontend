@@ -1,21 +1,27 @@
 <ion-view>
+
+    <div class="bar bar-header bar-stable">
+      <button class="button button-icon icon ion-navicon"></button>
+      <div class="h1 title">Hello, {{waitInfo.first_name}}!  </div>
+      <button class="button button-clear ion-refresh"></button>
+    </div>
+
   <ion-content>
     <head>
       <!-- <link rel="stylesheet" href="patron.css"> -->
     </head>
     <body>
-      <div class="card patron-main">
-        <h2>Hello, {{waitInfo.first_name}}! </h2>
-        <hr>
 
-        <h1>wait time:</h1>
+      <div class="card patron-main">
+
+        <div class="wait-time-header"><h3>Wait Time:</h3></div>
 
         <div id="timer"><h1>{{waitInfo.minutes}}:{{waitInfo.seconds}} - {{waitInfo.range}}:{{waitInfo.rangeSeconds}}</h1>
           </div>
 
-        <div class="parties-ahead"><h3>Parties Ahead:  {{parties_ahead}}</h3>
+        <div class="parties-ahead"><p>Parties Ahead:  {{parties_ahead}}</p>
         </div>
-        <hr>
+      <!--   <hr> -->
 
         <button ng-click='initCancelReservation(waitInfo)' class="button button-small button-calm button-patron-main">
           Remove Me From Wait List
@@ -35,6 +41,12 @@
         </div>
 
       </div>
+
+
+      <a class="phone" href="tel:1-707-707-7007"><button class="button button-small button-stable ion-iphone restaurant-name">
+
+          Contact {{restaurant.restaurant_name}}
+      </button></a>
 
     </body>
   </ion-content>
