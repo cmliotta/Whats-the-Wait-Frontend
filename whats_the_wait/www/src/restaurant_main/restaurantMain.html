@@ -89,13 +89,20 @@
             <td>{{reservation.last_initial}}</td>
             <td>{{reservation.party_size}}</td>
             <td>{{reservation.minutes}}:00</td>
-            <td><button ng-click="seated(reservation)"><i class="fa fa-check"></i>Send Alert</button></td>
+            <div ng-show="tableReady">
+              <div>
+                <p>Table is Ready</p>
+              </div>
+              <button ng-click='cancelTableReady()'>Cancel</button>
+              <button ng-click='confirmTableReady()'>Send Alert</button>
+            </div>
+            <td><button ng-click="initTableReady(reservation)"><i class="fa fa-check"></i>Table Ready</button></td>
             <div ng-show="reservationToRemove">
               <div>
-                <p>Content you want the user to see goes here.</p>
+                <p>Remove from Wait List</p>
               </div>
               <button ng-click='cancelReservationRemoval()'>Cancel</button>
-              <button ng-click='confirmReservationRemoval()'>Confirm</button>
+              <button ng-click='confirmReservationRemoval()'>Remove</button>
             </div>
             <td><button ng-click="initRemove(reservation)"><i class="fa fa-times"></i>Remove</button></td>
           </tr>

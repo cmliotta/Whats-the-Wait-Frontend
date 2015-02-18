@@ -17,9 +17,17 @@
         </div>
         <hr>
 
-        <button ng-click='cancel(waitInfo)' class="button button-small button-calm button-patron-main">
+        <button ng-click='initCancelReservation(waitInfo)' class="button button-small button-calm button-patron-main">
           Remove Me From Wait List
         </button>
+
+        <div ng-show="cancelReservation">
+          <div>
+            <p>Remove from Wait List</p>
+          </div>
+          <button ng-click='dontCancelReservation()'>Don't Remove Me</button>
+          <button ng-click='confirmCancelReservation()'>Remove Me</button>
+        </div>
 
         <!-- <h1 id="range">- {{waitInfo.minutes + 10}}:{{waitInfo.seconds}}  Minutes</h1> -->
         <div class="contact">

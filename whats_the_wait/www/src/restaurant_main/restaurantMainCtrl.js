@@ -24,7 +24,7 @@ angular.module('restaurantApp')
     $scope.onTimeout = function(){
       for (var i = 0; i < $scope.reservations.length; i++) {
         if ($scope.reservations[i].minutes > 0) {
-          $scope.reservations[i].minutes --
+          $scope.reservations[i].minutes--
           $http.post('http://localhost:3000/restaurants/' + $scope.restaurant.id + '/reservations/countdown/' + $scope.reservations[i].id)
         }
       }
@@ -98,6 +98,10 @@ angular.module('restaurantApp')
       })
     }
 
+   $scope.initRemove = function(reservation) {
+    $scope.reservationToRemove = angular.copy(reservation);
+    }
+
     $scope.confirmReservationRemoval = function() {
       $http.delete('http://localhost:3000/restaurants/' + $scope.reservationToRemove.restaurant_id + '/reservations/' + $scope.reservationToRemove.id)
         .success(function()  {
@@ -113,15 +117,21 @@ angular.module('restaurantApp')
       delete $scope.reservationToRemove;
     }
 
-   $scope.initRemove = function(reservation) {
-    $scope.reservationToRemove = angular.copy(reservation);
-    }
+  $scope.initTableReady = function(reservation) {
+    $scope.tableReady = angular.copy(reservation);
+  }
 
-  $scope.seated = function(reservation) {
-    $http.post('http://localhost:3000/restaurants/' + reservation.restaurant_id + '/reservations/' + reservation.id + '/send_alert')
+  $scope.confirmTableReady = function() {
+    $http.post('http://localhost:3000/restaurants/' + $scope.tableReady.restaurant_id + '/reservations/' + $scope.tableReady.id + '/send_alert')
       .success(function(response)  {
+        delete $scope.tableReady
         console.log(response)
+        getReservations()
     })
+  }
+
+  $scope.cancelTableReady = function() {
+    delete $scope.tableReady
   }
 
   setInterval(function() {
