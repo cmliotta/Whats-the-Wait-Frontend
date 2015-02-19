@@ -14,6 +14,20 @@
 
         <h3 class="wait-list-header">Waiting List</h3>
 
+        <div class="add-time">
+          <h4>Add Time:</h4>
+
+          <select type="text" ng-model="uiState.party_size" class="party-size-dropdown">
+            <option value="2">Party Size 1-2</option>
+            <option value="4">Party Size 3-4</option>
+            <option value=5>Party Size 5+</option>
+          </select>
+
+          <button ng-click="addTime()" class="plus-5">+5</button>
+
+          <button ng-click="subtractTime()" class="minus-5">-5</button>
+        </div>
+
         <table class="table">
           <tr>
             <th>Name</th>
@@ -49,7 +63,8 @@
 
       <div class="card add-reservation">
 
-        <button ng-click="initNewReservation()" class="button button-small button-royal">Add Reservation</button>
+        <h3 class="reservations-header">New Party</h3>
+        <button ng-click="initNewReservation()" class="button button-small new-party"><i class="ion-plus"></i></button>
 
         <div ng-show="newReservation" class="list list-inset">
           <label class="item item-input">
@@ -88,18 +103,8 @@
           <button type="submit" ng-click="cancelAddReservation()">Cancel</button>
         </div>
 
-        <h4>Add Time:</h4>
 
-        <label>Party Size: </label>
-        <select type="text" ng-model="uiState.party_size">
-          <option value="2">1-2</option>
-          <option value="4">3-4</option>
-          <option value=5>5+</option>
-        </select>
 
-        <button ng-click="addTime()">+5</button>
-
-        <button ng-click="subtractTime()">-5</button>
 
       </div>
     </body>
