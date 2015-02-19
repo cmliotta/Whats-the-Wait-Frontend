@@ -1,7 +1,61 @@
 /*=========== RESTAURANT MAIN ===========  */
 
 .restaurant-main {
-  margin-top: 20%;
+  margin: 7.5%;
+  margin-top: 10%;
   padding-top: 15px;
   padding-bottom: 25px;
+}
+
+.table {
+  margin: auto;
+}
+
+.add-reservation {
+  margin: 7.5%;
+}
+
+td {
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+  font-size: 18px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  text-align: center;
+  padding-right: 50px;
+}
+
+tbody {
+  text-align: left;
+}
+
+th {
+ width: 22.5%;
+ font-weight: bold;
+ font-size: 20px;
+ text-align: center;
+ border-bottom: 1px solid black;
+ padding-bottom: 10px;
+ padding-top: 10px;
+ padding-right: 50px;
+}
+
+.name {
+
+}
+
+.ready {
+  border: none;
+  box-shadow: none;
+  color: lime;
+  background-color: white;
+  font-size: 25px;
+}
+
+.remove {
+  border: none;
+  box-shadow: none;
+  color: red;
+  background-color: white;
+  font-size: 25px;
 }

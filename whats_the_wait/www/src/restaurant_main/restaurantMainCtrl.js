@@ -54,7 +54,7 @@ angular.module('restaurantApp')
     }
 
     $scope.addTime = function() {
-      console.log(typeof($scope.uiState.party_size))
+      // console.log(typeof($scope.uiState.party_size))
       $http({
         method: 'POST',
         url: 'http://localhost:3000/restaurants/' + $scope.restaurant.id + '/reservations/add_time',
@@ -125,7 +125,7 @@ angular.module('restaurantApp')
     $http.post('http://localhost:3000/restaurants/' + $scope.tableReady.restaurant_id + '/reservations/' + $scope.tableReady.id + '/send_alert')
       .success(function(response)  {
         delete $scope.tableReady;
-        console.log(response)
+
         getReservations()
     })
   }
