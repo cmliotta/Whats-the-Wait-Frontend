@@ -147,8 +147,11 @@ th {
 
 .error {
   position: absolute;
-  width: 100%;
+  width: 80%;
   color: red;
+  font-weight: bold;
+  z-index: 99;
+  border: 1px solid red;
 }
 
 .item-text-wrap {
@@ -202,4 +205,8 @@ th {
 
 .party-size-div, .wait-time-div, .cell-phone-field {
   font-size: 18px;
+}
+
+.hidecheck {
+  visibility: hidden;
 }

@@ -3,7 +3,7 @@
     <div class="bar bar-header bar-stable">
       <button class="button button-icon icon ion-navicon"></button>
       <div class="h1 title">Hello, {{waitInfo.first_name}}!  </div>
-      <button class="button button-clear ion-refresh"></button>
+      <button class="button button-clear ion-refresh" ng-click="refreshPatronMain()"></button>
     </div>
 
   <ion-content>
@@ -30,7 +30,7 @@
           <div class="you-sure">
             <p>Are you sure?</p>
           </div>
-          <button class="remove-btn button button-small" ng-click='dontCancelReservation()'>Yes</button>
+          <button class="remove-btn button button-small button-balanced" ng-click='dontCancelReservation()'>Yes</button>
           <button class="cancel-remove button button-small button-assertive" ng-click='confirmCancelReservation()'>No</button>
         </div>
 

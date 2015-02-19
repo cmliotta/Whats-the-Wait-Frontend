@@ -30,7 +30,7 @@
               <button class="remove-btn button button-small button-balanced" ng-click='confirmTableReady()'>Yes</button>
               <button class="cancel-remove button button-small button-assertive" ng-click='cancelTableReady()'>No</button>
             </div>
-            <td ng-hide='reservation.table_ready == "t"' ><button ng-click="initTableReady(reservation)" class="ready"><i class="ion-checkmark-round"></i></button></td>
+            <td ><button ng-click="initTableReady(reservation)" class="ready"><i ng-class="{hidecheck: reservation.table_ready == 't'}" class="ion-checkmark-round"></i></button></td>
             <div ng-show="reservationToRemove">
               <div>
                 <p class="remove-header">Remove from Wait List?</p>
@@ -61,8 +61,10 @@
           <button ng-click="subtractTime()" class="minus-5">-5</button>
         </div>
 
-      <div ng-show="newReservation" class="item item-text-wrap">
         <h2 class="error" ng-if="error">{{error}}</h2>
+
+      <div ng-show="newReservation" class="item item-text-wrap">
+
 
       <div class="add-event-container">
         <label class="item item-input item-stacked-label">

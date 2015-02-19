@@ -2,13 +2,14 @@ angular.module('restaurantApp')
 
 .controller('patronMainCtrl', ['patronFactory', '$scope', '$http', '$timeout', '$location', function(patronAuthFactory, $scope, $http, $timeout, $location) {
 
+$scope.refreshPatronMain = function() {
 $http.get('http://localhost:3000/patrons/1')
     .success(function(data) {
       console.log(data)
       $location.path("/patronMain")
       $scope.waitInfo = data.waitInfo
       $scope.waitInfo.seconds = 0 + '0'
-      $scope.waitInfo.range = $scope.waitInfo.minutes + 1
+      $scope.waitInfo.range = $scope.waitInfo.minutes + 5
       $scope.waitInfo.rangeSeconds = 0 + '0'
       $scope.restaurant = data.restaurant
       $scope.parties_ahead = data.parties_ahead
@@ -17,6 +18,9 @@ $http.get('http://localhost:3000/patrons/1')
       $location.path("/noWaitList")
       console.log(data)
     })
+}
+
+  $scope.refreshPatronMain();
 
     $scope.noWaitList = function() {
       $location.path("/noWaitList")
@@ -40,7 +44,7 @@ $http.get('http://localhost:3000/patrons/1')
         .success(function(data){
         $scope.waitInfo = data.waitInfo
         $scope.waitInfo.seconds = 0 + '0'
-        $scope.waitInfo.range = $scope.waitInfo.minutes + 1
+        $scope.waitInfo.range = $scope.waitInfo.minutes + 5
         $scope.waitInfo.rangeSeconds = 0 + '0'
         $scope.restaurant = data.restaurant
         $scope.parties_ahead = data.parties_ahead
