@@ -27,11 +27,11 @@
         </button>
 
         <div ng-show="cancelReservation">
-          <div>
+          <div class="you-sure">
             <p>Are you sure?</p>
           </div>
-          <button ng-click='dontCancelReservation()'>Yes</button>
-          <button ng-click='confirmCancelReservation()'>No</button>
+          <button class="remove-btn button button-small" ng-click='dontCancelReservation()'>Yes</button>
+          <button class="cancel-remove button button-small button-assertive" ng-click='confirmCancelReservation()'>No</button>
         </div>
 
         <!-- <h1 id="range">- {{waitInfo.minutes + 10}}:{{waitInfo.seconds}}  Minutes</h1> -->

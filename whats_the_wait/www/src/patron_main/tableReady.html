@@ -1,7 +1,22 @@
 <ion-view>
+    <div class="bar bar-header bar-stable">
+      <button class="button button-icon icon ion-navicon"></button>
+      <div class="h1 title">What's The Wait?</div>
+      <button class="button button-clear ion-refresh"></button>
+    </div>
+
   <ion-content>
-    <h1> Your Table is Ready!! </h1>
-    <p>  Please arrive within 5 minutes or contact the restaurant </p>
-    <button ng-click="noWaitList()">View Wait List</button>
-  </ion-view>
-</ion-content>
+
+    <div class="logo">
+      <img src="img/logo.png"/>
+    </div>
+
+    <body>
+
+      <div class="table-ready-container">
+        <h2 class="no-wait-list"> Your table is ready! </h2>
+      </div>
+
+    </body>
+  </ion-content>
+</ion-view>
