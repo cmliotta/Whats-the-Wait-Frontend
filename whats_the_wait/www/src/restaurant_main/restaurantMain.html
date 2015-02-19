@@ -25,18 +25,18 @@
                 <td>{{reservation.minutes}}:00</td>
             <div ng-show="tableReady">
               <div>
-                <p class="remove-header">Table is Ready</p>
+                <p class="remove-header">Send alert to party?</p>
               </div>
-              <button class="remove-btn button button-small" ng-click='confirmTableReady()'>Send Alert</button>
-              <button class="cancel-remove button button-small" ng-click='cancelTableReady()'>Cancel</button>
+              <button class="remove-btn button button-small button-balanced" ng-click='confirmTableReady()'>Yes</button>
+              <button class="cancel-remove button button-small button-assertive" ng-click='cancelTableReady()'>No</button>
             </div>
             <td ng-hide='reservation.table_ready == "t"' ><button ng-click="initTableReady(reservation)" class="ready"><i class="ion-checkmark-round"></i></button></td>
             <div ng-show="reservationToRemove">
               <div>
                 <p class="remove-header">Remove from Wait List?</p>
               </div>
-              <button class="remove-btn button button-small" ng-click='confirmReservationRemoval()'>Yes</button>
-              <button class="cancel-remove button button-small" ng-click='cancelReservationRemoval()'>No</button>
+              <button class="remove-btn button button-small button-balanced" ng-click='confirmReservationRemoval()'>Yes</button>
+              <button class="cancel-remove button button-small button-assertive" ng-click='cancelReservationRemoval()'>No</button>
             </div>
             <td><button ng-click="initRemove(reservation)" class="remove"><i class="ion-close-round"></i></button></td>
           </tr>
@@ -63,9 +63,8 @@
 
       <div ng-show="newReservation" class="item item-text-wrap">
         <h2 class="error" ng-if="error">{{error}}</h2>
-        <!-- <div ng-show="newReservation" class="list list-inset cell-phone"> -->
-                <!-- <i class="icon ion-iphone cell-phone-icon"></i> -->
 
+      <div class="add-event-container">
         <label class="item item-input item-stacked-label">
 
         <input type="text" ng-model="newReservation.cell_phone" class='cell-phone-field' placeholder="555-555-5555">
@@ -97,9 +96,15 @@
             <option value=60>60</option>
           </select>
           </label>
-          <button class="new-party-add button button-small" type="submit" ng-click="addReservation()">Add</button>
 
-          <button class="new-party-cancel button button-small" type="submit" ng-click="cancelAddReservation()">Cancel</button>
+          <div class = "add-res-btns">
+            <button class="new-party-add button button-small button-balanced" type="submit" ng-click="addReservation()">Add</button>
+
+            <button class="new-party-cancel button button-small button-assertive" type="submit" ng-click="cancelAddReservation()">Cancel</button>
+          </div>
+        </div>
+
+
         </div>
 
 
