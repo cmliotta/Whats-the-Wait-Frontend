@@ -2,7 +2,8 @@ angular.module('restaurantApp')
 
 .controller('patronMainCtrl', ['patronFactory', '$scope', '$http', '$timeout', '$location', function(patronAuthFactory, $scope, $http, $timeout, $location) {
 
-$scope.refreshPatronMain = function() {
+
+
 $http.get('http://localhost:3000/patrons/1')
     .success(function(data) {
       console.log(data)
@@ -18,9 +19,10 @@ $http.get('http://localhost:3000/patrons/1')
       $location.path("/noWaitList")
       console.log(data)
     })
-}
 
-  $scope.refreshPatronMain();
+   $scope.refreshPatronMain = function() {
+  window.location.reload(true);
+  }
 
     $scope.noWaitList = function() {
       $location.path("/noWaitList")
@@ -86,7 +88,7 @@ $http.get('http://localhost:3000/patrons/1')
 
     // need to change for patron
     $scope.confirmCancelReservation = function() {
-      $http.post('http://localhost:3000/restaurants/' + $scope.cancelReservation.restaurant_id + '/cancellation', $scope.cancelReservation)
+      $http.post('http://localhost:3000/restaurants/' + $scope.cancelReservation.restaurant_id + '/cancellation/' + $scope.cancelReservation.id)
         .success(function(response)  {
           delete $scope.cancelReservation;
         })

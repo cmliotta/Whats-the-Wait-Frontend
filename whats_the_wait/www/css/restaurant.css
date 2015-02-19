@@ -147,11 +147,12 @@ th {
 
 .error {
   position: absolute;
-  width: 80%;
+  width: 85%;
   color: red;
   font-weight: bold;
   z-index: 99;
-  border: 1px solid red;
+  background-color: white;
+  height: 20%;
 }
 
 .item-text-wrap {

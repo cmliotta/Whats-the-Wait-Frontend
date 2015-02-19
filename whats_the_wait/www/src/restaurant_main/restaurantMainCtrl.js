@@ -142,6 +142,6 @@ angular.module('restaurantApp')
         $scope.error = data.message
       }
     })
-  }, 10000)
+  }, 1000)
 
 }])
