@@ -4,7 +4,7 @@ body {
 }
 
 ion-content {
-  background-color: #BCBCBC;
+  background-color: #F5F2EC;
 }
 
 .sign-up-link {
@@ -26,23 +26,23 @@ img {
 }
 
 .patron-card {
-  background-color: #8A6DE9;
+  /*background-color: #E3EAF1;*/
   margin: 50px 50px 0 50px;
-  border: 1px solid #737373;
+  border: 1px solid gray;
   padding-top: 10px;
+  opacity: .8;
 }
 
 .restaurant-card {
-  background-color: #007A7A;
+  /*background-color: #FF4C92;*/
   margin: 40px 50px 0 50px;
   border: 1px solid #737373;
   padding-top: 10px;
+  opacity: .8;
 }
 
-
-
 h3 {
-  color: #272727;
+  color: #A75EFF;
 }
 
 .card {
@@ -56,7 +56,8 @@ a {
 /*=========== PATRON SIGN UP ===========  */
 
 .button {
-  background-color: #7C53CF;
+  background-color: #A75EFF;
+  font-size: 20px;
 
 }
 
@@ -74,39 +75,50 @@ a {
   margin-top: 20%;
 }
 
+
 /*=========== PATRON NO WAIT LIST===========  */
 
 .no-wait-list {
   text-align: center;
+  color: #A75EFF;
 }
 
 .no-wait-container {
-  border: 3px solid gray;
-  background-color: gray;
-  opacity: .4;
+  border: 3px solid #666A6E;
+  background-color: white;
+  opacity: .5;
   padding: 45px;
-  margin: 60px 25px;
+  margin: 8%;
 }
+
 
 /*=========== PATRON MAIN ===========  */
 
 .restaurant-name {
   margin-top: 10%;
-  padding: 0px 40px;
+  padding: 0px 15px;
   display: block;
   margin-left: auto;
   margin-right: auto;
+  font-size: 15px;
 }
 
 .patron-main {
   margin-top: 40%;
   padding-top: 15px;
   padding-bottom: 25px;
+  opacity: .8;
+  margin-left: 5%;
+  margin-right: 5%;
 }
 
 .wait-time-header {
   margin-top: 20px;
   margin-bottom: 70px;
+}
+
+.wait-time {
+  color: black;
 }
 
 .parties-ahead {
@@ -117,13 +129,31 @@ a {
 }
 
 .timer {
-  font-size: 115px;
-  color: teal;
+  font-size: 55px;
+  font-weight: bold;
+  color: #A75EFF;
 }
 
 .button-patron-main {
   margin-top: 15px;
-  padding: 0px 30px;
+  padding: 0px 10px;
+  font-weight: bold;
+  font-size: 15px;
 }
 
 
+.you-sure {
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+
+/*=========== PATRON TABLE IS READY ALERT ===========  */
+
+.table-ready-container {
+  border: 3px solid #666A6E;
+  background-color: white;
+  opacity: .5;
+  padding: 45px;
+  margin: 8%;
+}

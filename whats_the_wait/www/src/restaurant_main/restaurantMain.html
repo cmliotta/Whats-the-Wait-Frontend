@@ -1,24 +1,79 @@
 <ion-view>
+    <div class="bar bar-header bar-stable">
+      <button class="button button-icon icon ion-navicon"></button>
+      <div class="h1 title">{{restaurant.restaurant_name}}  Wait List</div>
+      <button class="button button-clear ion-refresh"></button>
+    </div>
+
   <ion-content>
-    <head>
-      <!-- <link rel="stylesheet" href="patron.css"> -->
-    </head>
+
     <body>
-      <div class="card">
-        <h2>{{restaurant.restaurant_name}}</h2>
+      <div class="card restaurant-main">
 
-        <button ng-click="initNewReservation()" class="button button-small button-calm">Add Reservation</button>
 
-        <h4 ng-if="error">{{error}}</h4>
+        <table class="table">
+          <tr>
+            <th>Name</th>
+            <th >Party size</th>
+            <th>Wait time</th>
+            <th>Table Ready</th>
+            <th>Remove</th>
+          </tr>
+          <tr ng-repeat="reservation in reservations">
+                <td>{{reservation.first_name}} {{reservation.last_initial}}.</td>
+                <td>{{reservation.party_size}}</td>
+                <td>{{reservation.minutes}}:00</td>
+            <div ng-show="tableReady">
+              <div>
+                <p class="remove-header">Send alert to party?</p>
+              </div>
+              <button class="remove-btn button button-small button-balanced" ng-click='confirmTableReady()'>Yes</button>
+              <button class="cancel-remove button button-small button-assertive" ng-click='cancelTableReady()'>No</button>
+            </div>
+            <td ><button ng-click="initTableReady(reservation)" class="ready"><i ng-class="{hidecheck: reservation.table_ready == 't'}" class="ion-checkmark-round"></i></button></td>
+            <div ng-show="reservationToRemove">
+              <div>
+                <p class="remove-header">Remove from Wait List?</p>
+              </div>
+              <button class="remove-btn button button-small button-balanced" ng-click='confirmReservationRemoval()'>Yes</button>
+              <button class="cancel-remove button button-small button-assertive" ng-click='cancelReservationRemoval()'>No</button>
+            </div>
+            <td><button ng-click="initRemove(reservation)" class="remove"><i class="ion-close-round"></i></button></td>
+          </tr>
+        </table>
 
-        <div ng-show="newReservation" class="list list-inset">
-          <label class="item item-input">
-            <i class="icon ion-iphone"></i>
-            <input type="text" ng-model="newReservation.cell_phone" placeholder="Cell phone number">
+
+        <div class="add-reservation">
+
+            <h3 class="reservations-header">New Party</h3>
+                <button ng-click="initNewReservation()" class="button button-small new-party"><i class="ion-plus"></i></button>
         </div>
 
-      <div class="item item-text-wrap">
-        <p>Party size:
+        <div class="add-time">
+          <h3>Add Time:</h3>
+            <select type="text" ng-model="uiState.party_size" class="party-size-dropdown">
+              <option value="2">Party Size 1-2</option>
+              <option value="4">Party Size 3-4</option>
+              <option value=5>Party Size 5+</option>
+            </select>
+          <button ng-click="addTime()" class="plus-5">+5</button>
+
+          <button ng-click="subtractTime()" class="minus-5">-5</button>
+        </div>
+
+        <h2 class="error" ng-if="error">{{error}}</h2>
+
+      <div ng-show="newReservation" class="item item-text-wrap">
+
+
+      <div class="add-event-container">
+        <label class="item item-input item-stacked-label">
+
+        <input type="text" ng-model="newReservation.cell_phone" class='cell-phone-field' placeholder="555-555-5555">
+        <!-- </div> -->
+      </label>
+        <label class="item item-input item-select">
+        <div class="party-size-div"> Party size: {{newReservation.party_size}} </div>
           <select type="number" ng-model="newReservation.party_size">
             <option value=1>1</option>
             <option value=2>2</option>
@@ -26,8 +81,9 @@
             <option value=4>4</option>
             <option value=5>5+</option>
           </select>
-
-        Wait time:
+        </label>
+        <label class="item item-input item-select">
+        <div class="wait-time-div"> Wait time: {{newReservation.minutes}} </div>
           <select type="number" ng-model="newReservation.minutes">
             <option value=10>10</option>
             <option value=15>15</option>
@@ -41,53 +97,23 @@
             <option value=55>55</option>
             <option value=60>60</option>
           </select>
-        </p>
+          </label>
 
-          <button type="submit" ng-click="addReservation()">Add</button>
+          <div class = "add-res-btns">
+            <button class="new-party-add button button-small button-balanced" type="submit" ng-click="addReservation()">Add</button>
 
-          <button type="submit" ng-click="cancelAddReservation()">Cancel</button>
+            <button class="new-party-cancel button button-small button-assertive" type="submit" ng-click="cancelAddReservation()">Cancel</button>
+          </div>
         </div>
 
-        <h4>Add Time:</h4>
 
-        <label>Party Size: </label>
-        <select type="text" ng-model="uiState.party_size">
-          <option value="2">1-2</option>
-          <option value="4">3-4</option>
-        </select>
-
-        <button ng-click="addTime()">+5</button>
-
-        <button ng-click="subtractTime()">-5</button>
+        </div>
 
 
-        <h3>Waiting List:</h3>
 
-        <table>
-          <tr ng-repeat="reservation in reservations">
-            <td>{{reservation.first_name}}</td>
-            <td>{{reservation.last_initial}}</td>
-            <td>{{reservation.party_size}}</td>
-            <td>{{reservation.minutes}}:00</td>
-            <div ng-show="tableReady">
-              <div>
-                <p>Table is Ready</p>
-              </div>
-              <button ng-click='cancelTableReady()'>Cancel</button>
-              <button ng-click='confirmTableReady()'>Send Alert</button>
-            </div>
-            <td ng-hide='reservation.table_ready == "t"' ><button ng-click="initTableReady(reservation)"><i class="fa fa-check"></i>Table Ready</button></td>
-            <div ng-show="reservationToRemove">
-              <div>
-                <p>Remove from Wait List</p>
-              </div>
-              <button ng-click='cancelReservationRemoval()'>Cancel</button>
-              <button ng-click='confirmReservationRemoval()'>Remove</button>
-            </div>
-            <td><button ng-click="initRemove(reservation)"><i class="fa fa-times"></i>Remove</button></td>
-          </tr>
-        </table>
       </div>
+
+
     </body>
   </ion-content>
 </ion-view>
